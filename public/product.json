@@ -1,0 +1,88 @@
+[
+    {
+      "_id": 1,
+      "category": "Burgers",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/our-food/our-food-1.png",
+      "name": "Beef Cheese Burger",
+      "title": "A Juicy Delight with Every Bite",
+      "price": 12.99,
+      "description": "Sink your teeth into our classic Beef Cheese Burger, made with a juicy beef patty, melted cheddar cheese, and fresh toppings, all tucked into a toasted sesame seed bun. Perfectly satisfying for burger enthusiasts!",
+      "ingredients": [
+        "Ground beef patty",
+        "Cheddar cheese",
+        "Sesame seed bun",
+        "Lettuce",
+        "Tomato slices",
+        "Red onion rings",
+        "Pickles",
+        "Ketchup",
+        "Mustard",
+        "Mayonnaise",
+        "Salt and pepper"
+      ]
+    },
+    {
+      "_id": 2,
+      "category": "Salads",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/our-food/our-food-2.png",
+      "name": "Mixed Salad",
+      "title": "A Fresh and Healthy Choice",
+      "price": 8.99,
+      "description": "Enjoy a vibrant bowl of mixed salad, featuring fresh greens, crisp vegetables, and a light vinaigrette. Perfect as a starter or a healthy main course.",
+      "ingredients": [
+        "Lettuce",
+        "Spinach",
+        "Arugula",
+        "Cherry tomatoes",
+        "Cucumber",
+        "Red onions",
+        "Carrots",
+        "Bell peppers",
+        "Olives",
+        "Extra virgin olive oil",
+        "Balsamic vinegar",
+        "Salt and pepper"
+      ]
+    },
+    {
+      "_id": 3,
+      "category": "Pasta",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/our-food/our-food-3.png",
+      "name": "Chicken Spaghetti",
+      "title": "A Comforting Classic with a Twist",
+      "price": 14.99,
+      "description": "Delicious spaghetti topped with tender chicken pieces and a rich tomato-based sauce, perfectly seasoned with herbs and spices. A heartwarming meal for pasta lovers.",
+      "ingredients": [
+        "Spaghetti pasta",
+        "Chicken breast (grilled or shredded)",
+        "Tomato sauce",
+        "Garlic",
+        "Onions",
+        "Olive oil",
+        "Basil",
+        "Oregano",
+        "Parmesan cheese",
+        "Salt and pepper"
+      ]
+    },
+    {
+      "_id": 4,
+      "category": "Pizza",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/our-food/our-food-4.png",
+      "name": "Cheesy Pizza",
+      "title": "An Irresistible Cheese Lover's Delight",
+      "price": 11.99,
+      "description": "A classic pizza loaded with a rich blend of melted cheeses on a crispy crust, topped with a sprinkle of herbs for an extra burst of flavor. Perfect for cheese enthusiasts!",
+      "ingredients": [
+        "Pizza dough",
+        "Mozzarella cheese",
+        "Cheddar cheese",
+        "Parmesan cheese",
+        "Tomato sauce",
+        "Oregano",
+        "Basil",
+        "Olive oil"
+      ]
+    }
+  ]
+  
