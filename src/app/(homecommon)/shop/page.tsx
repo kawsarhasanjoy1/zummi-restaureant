@@ -19,7 +19,7 @@ const page = () => {
         </div>
         <div className=" grid grid-cols-1 md:grid-cols-4 gap-10">
           {menu?.map((menu) => (
-            <Shop menu={menu} />
+            <Shop key={menu?._id} menu={menu} />
           ))}
         </div>
       </div>

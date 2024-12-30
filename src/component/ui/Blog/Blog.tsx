@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import BlogRight from "./BlogRight";
-import blogs from "../../../../public/blog.json";
 import { CiCalendarDate } from "react-icons/ci";
 import { RiAdminLine } from "react-icons/ri";
 import Button from "@/component/Button/Button";
+import { BlogType } from "@/type/blog";
 
-const Blog = ({ blog }: { blog: any }) => {
+const Blog = ({ blog }: { blog : BlogType}) => {
   return (
     <div className=" space-y-4 col-span-8 border border-gray-600">
       <Image
@@ -35,7 +34,7 @@ const Blog = ({ blog }: { blog: any }) => {
         </div>
         <p className=" border-t border-gray-500"></p>
         <div>
-          <Link href={`/blog/${blog?.id}`}>
+          <Link href={`/blog/${blog?._id}`}>
             <Button className=" size-36 group-hover:scale-110">
               read more
             </Button>

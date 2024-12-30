@@ -7,7 +7,8 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./styles.css";
-
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CommonSwiper = ({ blogs }: { blogs: any }) => {
   return (
     <div>
@@ -33,19 +34,24 @@ const CommonSwiper = ({ blogs }: { blogs: any }) => {
         className="mySwiper"
       >
         <div className="">
-          {blogs?.map((blog: any) => {
-            return (
-              <SwiperSlide key={blog?._id} className="">
-                <Image
-                  src={blog?.image}
-                  quality={100}
-                  height={700}
-                  width={700}
-                  alt=""
-                />
-              </SwiperSlide>
-            );
-          })}
+          {blogs?.map(
+            (blog: {
+              _id: React.Key | null | undefined;
+              image: string | StaticImport;
+            }) => {
+              return (
+                <SwiperSlide key={blog?._id} className="">
+                  <Image
+                    src={blog?.image}
+                    quality={100}
+                    height={700}
+                    width={700}
+                    alt=""
+                  />
+                </SwiperSlide>
+              );
+            }
+          )}
         </div>
       </Swiper>
     </div>

@@ -12,8 +12,9 @@ import Image from "next/image";
 
 import ChefDetails from "../ChefDetails/ChefDetails";
 import CommonDesign from "@/component/Common/CommonDesign";
+import { ChefType } from "@/type/chef";
 
-const Chef = ({ chefs }: { chefs: any }) => {
+const Chef = ({ chefs }: { chefs: ChefType[] }) => {
   return (
     <div className=" pt-48">
       <div className=" flex flex-col justify-center items-center space-y-4 mb-14">
@@ -42,7 +43,7 @@ const Chef = ({ chefs }: { chefs: any }) => {
         className="mySwiper"
       >
         <div className="relative bg-stone-500 h-[500px] w-[300px] group">
-          {chefs?.map((chef: any) => {
+          {chefs?.map((chef: ChefType) => {
             return (
               <SwiperSlide key={chef?._id} className=" absolute top-4">
                 <Image

@@ -1,10 +1,11 @@
+import { MenuTpe } from "@/type/menu";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css"; // Ensure styles are imported
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Shop = ({ menu }: { menu: any }) => {
+const Shop = ({ menu }: { menu: MenuTpe }) => {
   return (
     <Link href={`/shop/${menu?._id}`} className="border  shadow-lg bg-slate-800 border-gray-700 group relative overflow-hidden">
       <div className="absolute inset-0 bg-gray-400 opacity-60 transition-transform duration-300 ease-in-out group-hover:-translate-y-[150px] -translate-y-full"></div>

@@ -1,9 +1,10 @@
 import OtherButton from "@/component/Button/OtherButton";
+import { ProductType } from "@/type/product";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductAbout = ({ Product }: { Product: any }) => {
+const ProductAbout = ({ Product }: { Product: ProductType }) => {
   return (
     <div className=" flex flex-wrap justify-center items-center space-y-8 ">
       <Image

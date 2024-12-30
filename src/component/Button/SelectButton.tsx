@@ -7,9 +7,8 @@ const SelectButton = ({
 }: {
   tab: string;
   activeTab: string;
-  setActiveTab: any;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-  console.log(activeTab);
   return (
     <div>
       <button

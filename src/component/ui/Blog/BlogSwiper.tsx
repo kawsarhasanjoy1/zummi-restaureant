@@ -7,8 +7,9 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./styles.css";
+import { BlogType } from "@/type/blog";
 
-const BlogSwiper = ({ blogs }: { blogs: any }) => {
+const BlogSwiper = ({ blogs }: { blogs: BlogType[] }) => {
   return (
     <div>
       <Swiper
@@ -33,7 +34,7 @@ const BlogSwiper = ({ blogs }: { blogs: any }) => {
         className="mySwiper"
       >
         <div className="">
-          {blogs?.map((blog: any) => {
+          {blogs?.map((blog: BlogType) => {
             return (
               <SwiperSlide key={blog?._id} className="">
                 <Image

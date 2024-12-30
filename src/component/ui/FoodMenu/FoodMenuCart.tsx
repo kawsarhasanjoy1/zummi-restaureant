@@ -1,8 +1,9 @@
+import { MenuTpe } from "@/type/menu";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const FoodMenuCart = ({ menu }: { menu: any }) => {
+const FoodMenuCart = ({ menu }: { menu: MenuTpe }) => {
   return (
     <div className=" flex justify-center items-center gap-4">
       <div>

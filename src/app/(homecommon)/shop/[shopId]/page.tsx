@@ -8,7 +8,7 @@ const page = ({params}: {params: any}) => {
     return (
         <div>
           {
-            singleProduct?.map(product =>   <ProductDetails product={product}/>)
+            singleProduct?.map(product =>   <ProductDetails key={product?._id} product={product}/>)
           }
         </div>
     );

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import React, { useCallback, useEffect, useState } from "react";
 
 const Review = () => {
   const array = [
@@ -61,16 +62,21 @@ const Review = () => {
   ];
 
   const [currentSlider, setCurrentSlider] = useState(0);
-  // The slider images array
-  const prevSlider = () =>
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // State to track screen size
+
+  const prevSlider = useCallback(() => {
     setCurrentSlider((currentSlider) =>
-      currentSlider === 0 ? array.length - 2 : currentSlider - 1
+      currentSlider === 0 ? array.length - 1 : currentSlider - 1
     );
-  const nextSlider = () =>
+  }, [array.length]);
+
+  const nextSlider = useCallback(() => {
     setCurrentSlider((currentSlider) =>
-      currentSlider === array.length - 2 ? 0 : currentSlider + 1
+      currentSlider === array.length - 1 ? 0 : currentSlider + 1
     );
-  // if you don't want to change the slider automatically then you can just remove the useEffect
+  }, [array.length]);
+
+  // Auto-slider effect
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextSlider();
@@ -78,13 +84,29 @@ const Review = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [currentSlider]);
+  }, [nextSlider]);
 
-  const isSmallScreen = window.innerWidth <= 768;
+  // Set screen size based on window width inside useEffect
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    // Initialize on component mount
+    handleResize();
+
+    // Add event listener for window resizing
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="relative overflow-hidden bg-black rounded-md">
-      <div className="absolute w-full h-full flex items-center justify-between z-10 ">
+      <div className="absolute w-full h-full flex items-center justify-between z-10">
         {/* arrow left */}
         <button
           onClick={prevSlider}
@@ -96,13 +118,12 @@ const Review = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="black"
           >
-            {" "}
-            <g strokeWidth="0"></g>{" "}
+            <g strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
               strokeLinecap="round"
               strokeLinejoin="round"
-            ></g>{" "}
+            ></g>
             <g id="SVGRepo_iconCarrier">
               <path
                 fill="black"
@@ -123,15 +144,13 @@ const Review = () => {
             fill="black"
             transform="rotate(180)"
           >
-            {" "}
-            <g strokeWidth="0"></g>{" "}
+            <g strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
               strokeLinecap="round"
               strokeLinejoin="round"
-            ></g>{" "}
+            ></g>
             <g id="SVGRepo_iconCarrier">
-              {" "}
               <path
                 fill="black"
                 d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
@@ -165,7 +184,9 @@ const Review = () => {
                 {each?.testimonialDescription}
               </p>
               <a className="inline-flex items-center">
-                <img
+                <Image
+                  height={50}
+                  width={50}
                   className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
                   src={`https://source.unsplash.com/200x200/?${each.keyWord}`}
                   alt="carousel navigate ui"

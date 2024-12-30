@@ -1,47 +1,50 @@
 "use client";
+import { TargetCounts } from "@/type/TargetCounts";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const ChefDetails = () => {
-  const [counts, setCounts] = useState({
+  const [counts, setCounts] = useState<TargetCounts>({
     chefs: 0,
     foodItems: 0,
     experienced: 0,
     happyCustomers: 0,
-  }) as any;
-
-  const targetCounts = {
-    chefs: 420,
-    foodItems: 320,
-    experienced: 50,
-    happyCustomers: 220,
-  } as any;
+  });
 
   useEffect(() => {
+    const targetCounts: TargetCounts = {
+      chefs: 420,
+      foodItems: 320,
+      experienced: 50,
+      happyCustomers: 220,
+    };
+
     const interval = setInterval(() => {
-      setCounts((prev: { [x: string]: number }) => {
-        const updatedCounts = { ...prev };
+      setCounts((prev: TargetCounts) => {
+        const updatedCounts: TargetCounts = { ...prev };
         let allReached = true;
 
-        Object.keys(targetCounts).forEach((key: any) => {
-          if (prev[key] < targetCounts[key]) {
-            updatedCounts[key] += 1; // Increment by 1
+        Object.keys(targetCounts).forEach((key) => {
+          const typedKey = key as keyof TargetCounts;
+          if (prev[typedKey] < targetCounts[typedKey]) {
+            updatedCounts[typedKey] += 1;
             allReached = false;
           }
         });
 
-        if (allReached) clearInterval(interval); // Stop when all targets are reached
+        if (allReached) clearInterval(interval);
         return updatedCounts;
       });
-    }, 10); // Speed of counting (adjust for faster/slower animation)
+    }, 10);
 
-    return () => clearInterval(interval); // Cleanup interval
-  }, []);
+    return () => clearInterval(interval);
+  }, []); // No dependencies needed here, the effect runs once
+
   return (
-    <div className=" mt-48 relative ">
+    <div className="mt-48 relative">
       <div>
         <Image
-          className=" w-full md:h-[500px] h-[1000px] object-cover blur-sm border-2 p-2"
+          className="w-full md:h-[500px] h-[1000px] object-cover blur-sm border-2 p-2"
           src={
             "https://i.ibb.co.com/FmyYGbP/premium-photo-1678897750441-b7fe348b14a5.jpg"
           }

@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import blogs from "../../../../public/blog.json";
 import { CiCalendarDate } from "react-icons/ci";
@@ -8,9 +7,10 @@ import { RiAdminLine } from "react-icons/ri";
 import BlogRight from "./BlogRight";
 import CommonSwiper from "@/component/Common/CommonSwiper";
 import CommonBanner from "@/component/Common/CommonBanner";
+import { BlogType } from "@/type/blog";
 
 
-const SingleBlog = ({ blog }: { blog: any }) => {
+const SingleBlog = ({ blog }: { blog: BlogType }) => {
   return (
     <div className=" px-2">
      <div>
