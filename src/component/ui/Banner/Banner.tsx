@@ -1,6 +1,6 @@
 import Button from "@/component/Button/Button";
 import OtherButton from "@/component/Button/OtherButton";
-import CommonDesign from "@/component/CommonDesign/CommonDesign";
+import CommonDesign from "@/component/Common/CommonDesign";
 import Image from "next/image";
 import React from "react";
 

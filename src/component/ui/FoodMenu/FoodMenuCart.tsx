@@ -7,7 +7,7 @@ const FoodMenuCart = ({ menu }: { menu: any }) => {
     <div className=" flex justify-center items-center gap-4">
       <div>
         <Image
-          className=" rounded-full w-24 h-24"
+          className=" rounded-full md:w-28 md:h-28 w-16 h-16"
           src={menu?.image}
           height={500}
           width={500}
@@ -16,13 +16,13 @@ const FoodMenuCart = ({ menu }: { menu: any }) => {
         />
       </div>
       <div className="">
-        <p className=" uppercase">
+        <p className=" uppercase text-xl">
           {" "}
           <Link className=" hover:text-yellow-600 duration-500" href={`menu/${menu?._id}`}>
             {menu?.category}
           </Link>
         </p>
-        <p>{menu?.recipe.slice(0, 37)}</p>
+        <p>{menu?.description.slice(0, 46)}</p>
       </div>
       <div>
         <p className=" text-yellow-500">${menu?.price}</p>

@@ -1,0 +1,24 @@
+
+  .swiper {
+    width: 85%;
+    height: 460px;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #242321;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 300px;
+    height: 490px;
+    object-fit: cover;
+  }
+  

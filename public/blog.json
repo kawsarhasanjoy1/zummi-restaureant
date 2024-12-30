@@ -1,0 +1,83 @@
+[
+    {
+      "_id": 1,
+      "title": "10 Nutritious and Easy Baby Food Recipes Your Little One Will Love",
+      "description": "Discover a variety of healthy and delicious homemade baby food recipes that are easy to prepare and packed with essential nutrients. Learn tips for introducing solids to your baby in a safe and enjoyable way, explore the benefits of organic ingredients, and understand how to create meals that support your child's growth and development.",
+      "category": "Baby Food",
+      "date": "2024-12-28",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-1.jpg"
+    },
+    {
+      "_id": 2,
+      "title": "Seasonal Superfoods: What to Eat This Winter",
+      "description": "Explore the incredible benefits of eating seasonally with our guide to winter superfoods. From hearty soups to warming stews, discover how seasonal ingredients can enhance your meals and provide essential nutrients. Learn sustainable cooking tips to minimize food waste and support the environment while enjoying fresh, flavorful dishes.",
+      "category": "Seasonal Food",
+      "date": "2024-12-15",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog-4/blog-4__item-1.png"
+    },
+    {
+      "_id": 3,
+      "title": "Quick and Healthy Meal Prep Ideas for Your Family",
+      "description": "Save time and energy with these quick and healthy meal prep ideas designed for busy parents. Learn the art of batch cooking, explore creative ways to plan your family's meals, and discover practical storage tips to keep your food fresh and nutritious. Make your weeknight dinners stress-free and full of wholesome goodness.",
+      "category": "Meal Prep",
+      "date": "2024-12-10",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-3.jpg"
+    },
+    {
+      "_id": 4,
+      "title": "Around the World in 10 Dishes: A Food Lover's Journey",
+      "description": "Embark on a culinary adventure with our collection of 10 iconic dishes from around the globe. Discover easy-to-follow recipes that bring the flavors of the world to your kitchen. Whether it's spicy curries or savory pastries, these dishes are perfect for introducing your family to diverse cuisines and cultures.",
+      "category": "Global Cuisine",
+      "date": "2024-11-30",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-1.jpg"
+    },
+    {
+      "_id": 5,
+      "title": "Why Hydration Matters and Fun Ways to Keep Your Kids Hydrated",
+      "description": "Learn why hydration is crucial for your child's health and explore creative ways to make drinking water fun and exciting. From fruit-infused water to hydrating snacks, discover practical tips to ensure your kids stay energized and focused throughout the day. Recognize the early signs of dehydration and how to address them effectively.",
+      "category": "Health Tips",
+      "date": "2024-11-20",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog-4/blog-4__item-4.png"
+    },
+    {
+      "_id": 6,
+      "title": "How to Cook and Eat Sustainably: Tips for Every Kitchen",
+      "description": "Discover practical tips for eco-friendly cooking and eating sustainably in your everyday life. Learn how to reduce food waste, make the most of leftovers, and choose ingredients that are both nutritious and environmentally friendly. Incorporate plant-based meals into your routine and contribute to a healthier planet.",
+      "category": "Sustainability",
+      "date": "2024-11-10",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-3.jpg"
+    },
+    {
+      "_id": 7,
+      "title": "Navigating Food Allergies: Safe and Tasty Substitutes for Your Family",
+      "description": "Find out how to manage food allergies with confidence using safe and tasty substitutes for common allergens like dairy, nuts, and gluten. Explore allergy-friendly recipes that everyone in your family can enjoy, and learn how to read labels effectively to keep your meals delicious and worry-free.",
+      "category": "Health Tips",
+      "date": "2024-10-25",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog-4/blog-4__item-3.png"
+    },
+    {
+      "_id": 8,
+      "title": "5 Adorable DIY Food Ideas for Your Baby's First Birthday",
+      "description": "Celebrate your baby's milestone with delightful DIY food ideas that are as adorable as they are healthy. Create a memorable smash cake, prepare colorful and nutritious party snacks, and ensure everyone at the celebration, from toddlers to adults, enjoys a fantastic selection of treats that fit the occasion.",
+      "category": "Celebrations",
+      "date": "2024-10-15",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-3.jpg"
+    },
+    {
+      "_id": 9,
+      "title": "The Science of Flavor: Why Babies Love Sweet Tastes",
+      "description": "Dive into the fascinating science behind why babies are naturally drawn to sweet flavors and how to gradually introduce them to a variety of tastes. Learn tips for transitioning from sweet to savory foods and discover fun, educational cooking activities to encourage adventurous eating habits in children.",
+      "category": "Science",
+      "date": "2024-09-30",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog/blog-1.jpg"
+    },
+    {
+      "_id": 10,
+      "title": "Top 10 Kitchen Safety Tips Every Parent Should Know",
+      "description": "Ensure your kitchen is a safe and welcoming space for your family with these top safety tips. Learn how to childproof your kitchen, choose age-appropriate cooking tools, and teach your children essential kitchen safety practices. Foster confidence and creativity in the kitchen while prioritizing safety for everyone.",
+      "category": "Safety",
+      "date": "2024-09-15",
+      "image": "https://html.rrdevs.net/zummi/assets/imgs/blog-4/blog-4__item-2.png"
+    }
+  ]
+  

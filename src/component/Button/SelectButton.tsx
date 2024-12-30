@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuButton = ({
+const SelectButton = ({
   tab,
   activeTab,
   setActiveTab,
@@ -13,7 +13,7 @@ const MenuButton = ({
   return (
     <div>
       <button
-        className={`px-4 py-2  border-b-2 uppercase ${
+        className={`md:px-4 px-2 py-2  border-b-2 uppercase ${
           activeTab === `${tab}`
             ? "text-yellow-500 border-yellow-500"
             : "border-transparent hover:text-yellow-500 hover:border-yellow-500"
@@ -26,4 +26,4 @@ const MenuButton = ({
   );
 };
 
-export default MenuButton;
+export default SelectButton;

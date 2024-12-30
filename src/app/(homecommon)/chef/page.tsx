@@ -1,21 +1,19 @@
 'use client'
 import CommonBanner from "@/component/Common/CommonBanner";
 import CommonSwiper from "@/component/Common/CommonSwiper";
-import FoodMenu from "@/component/ui/FoodMenu/FoodMenu";
+import Chef from "@/component/ui/Chef/Chef";
+import chef from '../../../../public/chef.json'
 import React from "react";
-import menu from '../../../../public/menu.json'
 
 const page = () => {
   return (
     <div>
       <div>
-        <CommonBanner name="Food menu" />
+        <CommonBanner name="Our chef"/>
       </div>
-      <div>
-        <FoodMenu />
-      </div>
-      <div>
-        <CommonSwiper blogs={menu} />
+      <div><Chef chefs={chef} /></div>
+      <div className=" mt-16">
+        <CommonSwiper blogs={chef}/>
       </div>
     </div>
   );

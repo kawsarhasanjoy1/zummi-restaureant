@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 
 const ProductAbout = ({ Product }: { Product: any }) => {
-  console.log(Product?.image);
   return (
     <div className=" flex flex-wrap justify-center items-center space-y-8 ">
       <Image

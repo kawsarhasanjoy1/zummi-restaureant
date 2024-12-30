@@ -4,51 +4,65 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
-import { LuMenu } from "react-icons/lu";
 
 const Header = () => {
   const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
   const [isOpen, setIsOpen] = useState(false);
-  const HandleHeader = () => {
+
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   return (
-    <nav className=" absolute flex md:fixed w-full justify-between items-center md:px-20 z-10 py-4">
-      <div className="absolute inset-0 bg-gray-500 opacity-30 pointer-events-none"></div>
-      <div className="relative z-10 flex w-full justify-between items-center px-4 text-white">
+    <nav className="fixed w-full bg-gray-500/75 z-20 py-4 px-4 md:px-20 uppercase">
+      <div className="relative flex justify-between items-center text-white">
+        {/* Logo Section */}
         <div>
-          <Image height={150} width={150} src={image.trim()} alt="Logo" />
+          <Image
+            height={150}
+            width={150}
+            src={image.trim()}
+            alt="Restaurant Logo"
+          />
         </div>
+
+        {/* Navigation Links */}
         <div
-          className={` md:flex  items-center justify-end  h-14  md:gap-10 md:py-2 absolute  md:space-y-0 space-y-10 md:static text-xl  ${
-            isOpen
-              ? "bg-red-500 z-10 md:right-auto right-0 top-[70px] w-full h-screen px-5 transition-all delay-100 duration-600"
-              : "-right-[100px]  h-screen md:h-14 md:right-auto "
+          className={`md:flex md:items-center md:justify-end absolute md:static -left-4 top-[70px] md:top-0 w-full md:w-auto bg-red-500 md:bg-transparent transition-all duration-500 ${
+            isOpen ? "flex flex-col -left-4 h-screen md:h-auto w-screen border" : "-left-[800px] h-screen md:h-0 w-full"
           }`}
         >
-          <Link href={'/'} className="hover:text-blue-500 duration-500  cursor-pointer">
+          <Link href="/" className="block px-4 py-2 text-[16px] hover:text-blue-500">
             Home
           </Link>
-          <Link href={'about'}className="hover:text-blue-500 duration-500 cursor-pointer">
+          <Link href="/about" className="block px-4 py-2 text-[16px] hover:text-blue-500">
             About Us
           </Link>
-          <Link href={'menu'} className="hover:text-blue-500 duration-500 cursor-pointer">
-            Food menu
+          <Link href="/menu" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+            Food Menu
           </Link>
-          <p className="hover:text-blue-500 duration-500 cursor-pointer">
+          <Link href="/shop" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+            shop
+          </Link>
+          <Link href="/chef" className="block px-4 py-2 text-[16px] hover:text-blue-500">
             Chef
-          </p>
-          <p className="hover:text-blue-500 duration-500 cursor-pointer">
+          </Link>
+          <Link href="/blog" className="block px-4 py-2 text-[16px] hover:text-blue-500">
             Blog
-          </p>
+          </Link>
         </div>
-        <div>
-          <button className="px-4 py-2 hidden md:block bg-blue-500 text-white rounded hover:bg-blue-600">
+
+        {/* Signup Button and Hamburger Icon */}
+        <div className="flex items-center space-x-4">
+          <button className="hidden md:block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-[14px]">
             Signup
           </button>
-          <span onClick={HandleHeader} className="md:hidden">
+          <button
+            onClick={toggleMenu}
+            className="md:hidden text-white focus:outline-none"
+          >
             {isOpen ? <AiOutlineClose size={25} /> : <FaBars size={25} />}
-          </span>
+          </button>
         </div>
       </div>
     </nav>

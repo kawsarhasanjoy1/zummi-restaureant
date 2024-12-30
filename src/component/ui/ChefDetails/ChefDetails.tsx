@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const OurDetails = () => {
+const ChefDetails = () => {
   const [counts, setCounts] = useState({
     chefs: 0,
     foodItems: 0,
@@ -10,21 +10,21 @@ const OurDetails = () => {
     happyCustomers: 0,
   }) as any;
 
-  const targetCounts  = {
-    chefs: 420 ,
-    foodItems: 320 ,
-    experienced: 50 ,
-    happyCustomers: 220 ,
+  const targetCounts = {
+    chefs: 420,
+    foodItems: 320,
+    experienced: 50,
+    happyCustomers: 220,
   } as any;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCounts((prev: { [x: string]: number; }) => {
+      setCounts((prev: { [x: string]: number }) => {
         const updatedCounts = { ...prev };
         let allReached = true;
 
-        Object.keys(targetCounts).forEach((key:any) => {
-          if (prev[key] < targetCounts[key] ) {
+        Object.keys(targetCounts).forEach((key: any) => {
+          if (prev[key] < targetCounts[key]) {
             updatedCounts[key] += 1; // Increment by 1
             allReached = false;
           }
@@ -98,4 +98,4 @@ const OurDetails = () => {
   );
 };
 
-export default OurDetails;
+export default ChefDetails;

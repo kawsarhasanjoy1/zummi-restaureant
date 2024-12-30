@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { BsCaretRight } from "react-icons/bs";
+import Review from "./Review";
 
 const FoodVideo = () => {
   const [active, setActive] = useState(false);
@@ -9,104 +10,26 @@ const FoodVideo = () => {
     setActive(!active);
   };
 
-  const array = [
-    {
-      name: "John Doe",
-      designation: "Student",
-      testimonialDescription:
-        "Being a student, Taskiee has been my go-to tool for organizing assignments and study schedules. The visual timeline and reminder features have helped me stay on top of my coursework",
-      keyWord: "Child",
-    },
-    {
-      name: "Jane Doe",
-      designation: "Freelancer",
-      testimonialDescription:
-        "Taskiee has been a game-changer for my freelance work. It allows me to effortlessly prioritize tasks, set realistic deadlines, and maintain a healthy work-life balance",
-      keyWord: "Gentlewoman",
-    },
-    {
-      name: "Shiyam Sarker",
-      designation: "Entrepreneur",
-      testimonialDescription:
-        "Taskiee's collaborative features have been instrumental in streamlining tasks for my startup. The ability to share projects and track progress with the team has enhanced our efficiency.",
-      keyWord: "Gentleman",
-    },
-    {
-      name: "Bob Smith",
-      designation: "Creative Professional",
-      testimonialDescription:
-        "As a creative professional, Taskiee has simplified my project management. The clean design and goal tracking feature keep me inspired and organized throughout the creative process.",
-      keyWord: "Child",
-    },
-    {
-      name: "Eva Williams",
-      designation: "Remote Worker",
-      testimonialDescription:
-        "Taskiee's mobile app has made remote work a breeze for me. I can seamlessly manage tasks on the go, ensuring that I stay productive regardless of my location.",
-      keyWord: "Individual",
-    },
-    {
-      name: "Chris Brown",
-      designation: "Parent",
-      testimonialDescription:
-        "Managing family schedules is no easy task, but Taskiee has made it seamless. From school activities to household chores, Taskiee keeps our family organized and on track.",
-      keyWord: "Boy",
-    },
-    {
-      name: "Olivia Davis",
-      designation: "Health Professional",
-      testimonialDescription:
-        "In the healthcare field, where time is crucial, Taskiee has become my ally. Its time tracking feature has allowed me to optimize patient care and manage administrative tasks efficiently.",
-      keyWord: "Girl",
-    },
-    {
-      name: "Liam Wilson",
-      designation: "Researcher",
-      testimonialDescription:
-        "Taskiee's analytics feature has proven invaluable in my research endeavors. It provides insightful data on my productivity patterns, helping me refine my workflow and achieve research goals",
-      keyWord: "Toddler",
-    },
-  ];
-
-  const [currentSlider, setCurrentSlider] = useState(0);
-  // The slider images array
-  const prevSlider = () =>
-    setCurrentSlider((currentSlider) =>
-      currentSlider === 0 ? array.length - 2 : currentSlider - 1
-    );
-  const nextSlider = () =>
-    setCurrentSlider((currentSlider) =>
-      currentSlider === array.length - 2 ? 0 : currentSlider + 1
-    );
-  // if you don't want to change the slider automatically then you can just remove the useEffect
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      nextSlider();
-    }, 3000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [currentSlider]);
-
-  const isSmallScreen = window.innerWidth <= 768;
+  
 
   return (
     <div className="">
       <div className="relative">
         <Image
-          className=" w-full"
-          src={
-            "https://cristianonew.ukrdevs.com/wp-content/uploads/2016/08/product-4-370x247.jpg"
+          className=" w-full md:h-full h-[400px] object-cover"
+          quality={100}
+          src={ 
+            "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
-          width={1000}
-          height={600}
+          width={1400}
+          height={1000}
           alt=""
         />
-        <div className=" absolute top-[30%] left-[20%]">
+        <div className=" absolute top-[30%] md:left-[20%] left-4 z-30 flex justify-center items-center">
           {active ? (
             <iframe
-              width="560"
-              height="315"
+            className=" md:w-[560px] w-[350px] md:h-[315px] h-auto"
+              
               src="https://www.youtube.com/embed/VexEx0jy6tY?si=4-EpEcDEToa9OY00"
               title="YouTube video player"
               frameBorder="0"
@@ -118,7 +41,7 @@ const FoodVideo = () => {
             ""
           )}
         </div>
-        <div className=" absolute top-[50%] left-10">
+        <div className=" absolute md:top-[50%] top-3 md:left-10 left-[40%]">
           <button className=" bg-yellow-400 w-14 h-14 rounded-full animate-ping z-10 duration-500"></button>
           <button
             onClick={HandleToVideo}
@@ -127,112 +50,10 @@ const FoodVideo = () => {
             <BsCaretRight size={25} />
           </button>
         </div>
-        <div className=" w-[00px]  mx-auto h-[270px] flex flex-row items-center overflow-hidden  absolute top-[50%] right-0 blur-md bg-gray-300">
-          
-        </div>
-        <div >
-          <div className="max-w-[50%] min-w-[350px]  mx-auto h-[270px] flex flex-row items-center overflow-hidden  absolute top-[50%] right-0 border">
-            <div className="relative overflow-hidden">
-              <div className="absolute w-full h-full flex items-center justify-between z-50 ">
-                {/* arrow left */}
-                <button
-                  onClick={prevSlider}
-                  className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 rounded-full w-6 h-6 md:w-8 md:h-8"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    className="w-4 h-4 md:w-6 md:h-6 icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="black"
-                  >
-                    {" "}
-                    <g strokeWidth="0"></g>{" "}
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></g>{" "}
-                    <g id="SVGRepo_iconCarrier">
-                      <path
-                        fill="black"
-                        d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-                      ></path>
-                    </g>
-                  </svg>
-                </button>
-                {/* arrow right */}
-                <button
-                  onClick={nextSlider}
-                  className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 duration-300 rounded-full w-6 h-6 md:w-8 md:h-8"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    className="w-4 h-4 md:w-6 md:h-6 icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="black"
-                    transform="rotate(180)"
-                  >
-                    {" "}
-                    <g strokeWidth="0"></g>{" "}
-                    <g
-                      id="SVGRepo_tracerCarrier"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></g>{" "}
-                    <g id="SVGRepo_iconCarrier">
-                      {" "}
-                      <path
-                        fill="black"
-                        d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-                      ></path>
-                    </g>
-                  </svg>
-                </button>
-              </div>
-              {/* slider container */}
-              <div
-                className="ease-linear duration-300 flex"
-                style={{
-                  transform: `translateX(-${
-                    currentSlider * (isSmallScreen ? 100 : 100)
-                  }%)`,
-                }}
-              >
-                {/* sliders */}
-                {array.map((each, idx) => (
-                  <div key={idx} className="p-4 min-w-full">
-                    <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        className="block w-5 h-5 text-white mb-4"
-                        viewBox="0 0 975.036 975.036"
-                      >
-                        <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-                      </svg>
-                      <p className="leading-relaxed mb-6 text-white">
-                        {each?.testimonialDescription}
-                      </p>
-                      <a className="inline-flex items-center">
-                        <img
-                          className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                          src={`https://source.unsplash.com/200x200/?${each.keyWord}`}
-                          alt="carousel navigate ui"
-                        />
-                        <span className="flex-grow flex flex-col pl-4">
-                          <span className="title-font font-medium text-gray-900">
-                            {each.name}
-                          </span>
-                          <span className="text-white text-sm">
-                            {each?.designation}
-                          </span>
-                        </span>
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      
+        <div className=" mb-48 md:mb-0">
+          <div className="max-w-[50%] min-w-[350px]  mx-auto h-[270px] flex flex-row items-center overflow-hidden  absolute -bottom-20 md:bottom-0 md:right-0 right-[4%]">
+           <Review/>
           </div>
         </div>
       </div>
