@@ -1,4 +1,5 @@
 "use client";
+import { USER_ROLE } from "@/constance/constance";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -29,26 +30,52 @@ const Header = () => {
         {/* Navigation Links */}
         <div
           className={`md:flex md:items-center md:justify-end absolute md:static -left-4 top-[70px] md:top-0 w-full md:w-auto bg-red-500 md:bg-transparent transition-all duration-500 ${
-            isOpen ? "flex flex-col -left-4 h-screen md:h-auto w-screen border" : "-left-[800px] h-screen md:h-0 w-full"
+            isOpen
+              ? "flex flex-col -left-4 h-screen md:h-auto w-screen border"
+              : "-left-[800px] h-screen md:h-0 w-full"
           }`}
         >
-          <Link href="/" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             Home
           </Link>
-          <Link href="/about" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/about"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             About Us
           </Link>
-          <Link href="/menu" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/menu"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             Food Menu
           </Link>
-          <Link href="/shop" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/shop"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             shop
           </Link>
-          <Link href="/chef" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/chef"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             Chef
           </Link>
-          <Link href="/blog" className="block px-4 py-2 text-[16px] hover:text-blue-500">
+          <Link
+            href="/blog"
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
             Blog
+          </Link>
+          <Link
+            href={`/dashboard/${USER_ROLE.superAdmin}`}
+            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+          >
+            Dashboard
           </Link>
         </div>
 

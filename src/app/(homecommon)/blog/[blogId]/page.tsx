@@ -4,7 +4,7 @@ import blogs from "../../../../../public/blog.json";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Page = ({ params }: { params: any }) => {
   const { blogId } = params;
-  const singleBlog = blogs.filter((blog) => blog._id === blogId); 
+  const singleBlog = blogs.filter((blog) => blog._id === blogId);
 
   return (
     <div>
