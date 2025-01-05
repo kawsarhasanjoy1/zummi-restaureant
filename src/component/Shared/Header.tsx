@@ -1,14 +1,23 @@
 "use client";
+import { authKey } from "@/constance/authKey";
 import { USER_ROLE } from "@/constance/constance";
+import { getTokenFromLocalStorage } from "@/service/action/getTokenFromLocalStorage";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
+import dynamic from "next/dynamic";
 
 const Header = () => {
   const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
   const [isOpen, setIsOpen] = useState(false);
+
+  // Memoized dynamic import
+  const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
+
+  const token = getTokenFromLocalStorage(authKey);
+  console.log(token);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -57,7 +66,7 @@ const Header = () => {
             href="/shop"
             className="block px-4 py-2 text-[16px] hover:text-blue-500"
           >
-            shop
+            Shop
           </Link>
           <Link
             href="/chef"
@@ -72,18 +81,24 @@ const Header = () => {
             Blog
           </Link>
           <Link
-            href={`/dashboard/${USER_ROLE.superAdmin}`}
+            href={`/dashboard/${USER_ROLE.superAdmin || "user"}`}
             className="block px-4 py-2 text-[16px] hover:text-blue-500"
           >
             Dashboard
+          </Link>
+          <Link
+            href={`/register`}
+            className="block px-4 py-2 text-[16px] hover:text-blue-500 md:hidden"
+          >
+            Register
           </Link>
         </div>
 
         {/* Signup Button and Hamburger Icon */}
         <div className="flex items-center space-x-4">
-          <Link href={'/register'} className="hidden md:block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-[14px]">
-            Signup
-          </Link>
+          <div>
+            <Auth />
+          </div>
           <button
             onClick={toggleMenu}
             className="md:hidden text-white focus:outline-none"

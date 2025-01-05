@@ -25,6 +25,7 @@ const page = () => {
       const user = verifyToken(res?.data?.token);
       if (token) {
         Cookies.set(authKey, token, { expires: 7 });
+        localStorage.setItem(authKey, token);
         dispatch(setUser({ user: user, token: token }));
         toast.success(res?.message);
         router.push("/");

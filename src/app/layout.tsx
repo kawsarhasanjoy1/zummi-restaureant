@@ -27,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Add any necessary metadata or scripts */}
-      </head>
+      <head>{/* Add any necessary metadata or scripts */}</head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
