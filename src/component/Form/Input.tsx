@@ -2,8 +2,6 @@ import { InputFieldProps } from "@/type/global";
 import React from "react";
 import { useFormContext, Controller } from "react-hook-form";
 
-
-
 const Input: React.FC<InputFieldProps> = ({
   name,
   label,
@@ -21,7 +19,7 @@ const Input: React.FC<InputFieldProps> = ({
     <div className="mb-4">
       <label
         htmlFor={name}
-        className="block text-sm font-medium text-gray-700 mb-1"
+        className="block text-sm font-medium text-white mb-1"
       >
         {label}
         {required && <span className="text-red-500"> *</span>}
@@ -36,7 +34,7 @@ const Input: React.FC<InputFieldProps> = ({
             {...field}
             type={type}
             placeholder={placeholder}
-            className={`block w-full px-4 py-2 text-sm border rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:outline-none ${edit} ${
+            className={`block w-full px-4 py-2 text-sm border rounded-md shadow-sm focus:ring focus:ring-blue-300 focus:outline-none text-black ${edit} ${
               errors[name]
                 ? "border-red-500 focus:ring-red-300"
                 : "border-gray-300"

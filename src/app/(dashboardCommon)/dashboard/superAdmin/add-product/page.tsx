@@ -2,38 +2,24 @@
 import React from "react";
 import Input from "@/component/Form/Input";
 import ZForm from "@/component/Form/ZForm";
-import { FieldValues, useFieldArray } from "react-hook-form";
+import { FieldValues} from "react-hook-form";
 import IngredientsFields from "@/component/Form/addIntrigation";
 import FileUpload from "@/component/Form/FileUpload";
+import useUploadImage from "@/hooks/useUploadImage";
+import { defaultAddProduct } from "@/constance/constance";
 
 const page = () => {
-  const handleToAddProduct = (e: FieldValues) => {
-    console.log(e);
+  const handleToAddProduct = async (e: FieldValues) => {
+    const res = await useUploadImage(e?.image);
+    if (res?.id) {
+      e.image = res?.display_url;
+      console.log(e);
+    }
   };
 
   return (
     <div className="md:max-w-4xl w-full mx-auto p-6 bg-white shadow-lg rounded-lg border">
-      <ZForm
-        onSubmit={handleToAddProduct}
-        defaultValues={{
-          name: "",
-          title: "",
-          price: 0,
-          description: "",
-          stock: 0,
-          category: "",
-          ingredients: [{ name: "", quantity: "" }],
-          image: "",
-          additionalInfo: {
-            calories: 0,
-            protein: "",
-            totalFat: "",
-            size: "",
-          },
-          ratingAverage: 0,
-          ratingQuantity: 0,
-        }}
-      >
+      <ZForm onSubmit={handleToAddProduct} defaultValues={defaultAddProduct}>
         <div className="text-2xl text-black font-semibold text-center mb-6 flex justify-center items-center gap-6">
           <p className=" border md:w-[300px] w-[80px]"></p>
           <p>Add Product</p>
@@ -130,11 +116,13 @@ const page = () => {
         </div>
         {/* Image */}
         <div className="mb-6">
-          <FileUpload  placeholder="Enter product image URL"
+          <FileUpload
+            placeholder="Enter product image URL"
             label="Image"
-            name="file"
+            name="image"
             edit="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            type="text"/>
+            type="file"
+          />
         </div>
 
         {/* Additional Info */}

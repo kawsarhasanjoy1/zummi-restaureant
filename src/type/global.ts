@@ -29,3 +29,14 @@ export interface InputFieldProps {
   edit?: string;
   required?: boolean;
 }
+
+export interface TUser {
+  name: string;
+  email: string;
+  password: string;
+  image: string;
+}
+export interface TLoginUser {
+  email: string;
+  password: string;
+}

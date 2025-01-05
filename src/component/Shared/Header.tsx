@@ -81,9 +81,9 @@ const Header = () => {
 
         {/* Signup Button and Hamburger Icon */}
         <div className="flex items-center space-x-4">
-          <button className="hidden md:block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-[14px]">
+          <Link href={'/register'} className="hidden md:block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-[14px]">
             Signup
-          </button>
+          </Link>
           <button
             onClick={toggleMenu}
             className="md:hidden text-white focus:outline-none"
