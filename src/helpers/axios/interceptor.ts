@@ -1,45 +1,45 @@
+
 import { authKey } from "@/constance/authKey";
-import { logOut } from "@/redux/api/features/authSlice";
+import { getCookieToken } from "@/service/action/getCookeiToken";
 import logOutUser from "@/service/action/logOut";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+
 
 const instance = axios.create();
-
 instance.defaults.headers.post["Content-Type"] = "application/json";
 instance.defaults.headers["Accept"] = "application/json";
 instance.defaults.timeout = 60000;
 
-axios.interceptors.request.use(
+// Request interceptor to add authorization token
+instance.interceptors.request.use(
   async function (config) {
-    const token = await getTokenFromLocalStorage(authKey);
+    const token = await getCookieToken(authKey);
     if (token) {
-      config.headers.Authorization = token as string;
+      config.headers.Authorization = token;
     }
     return config;
   },
   function (error) {
-    // Do something with request error
     return Promise.reject(error);
   }
 );
 
-// Add a response interceptor
-axios.interceptors.response.use(
+// Response interceptor to handle errors
+instance.interceptors.response.use(
   function (response) {
     return response;
   },
   async (error) => {
-    const router = useRouter();
-    const dispatch = useDispatch();
-    const status = error?.response?.status;
+    const status = error.response?.status;
     if (status === 401 || status === 403) {
-      await dispatch(logOut());
-      await logOutUser(router);
-      router.push("/login");
+      logOutUser(authKey)
     }
-    return Promise.reject(error);
+
+    // Log the error message
+    const errorMessage = error.response?.data || error.message || 'Unknown error';
+    console.error(errorMessage);
+
+    return Promise.reject(error); // Reject the promise to propagate the error
   }
 );
 

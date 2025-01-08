@@ -1,3 +1,5 @@
+import { TBlog } from "@/type/blog";
+import { TChef } from "@/type/chef";
 import { TLoginUser, TUser } from "@/type/global";
 
 export const USER_ROLE = {
@@ -29,11 +31,28 @@ export const defaultAddProduct = {
     totalFat: "",
     size: "",
   },
-  ratingAverage: 0,
-  ratingQuantity: 0,
 };
 
 export const defaultLoginUser: TLoginUser = {
   email: "",
   password: "",
+};
+
+
+export const defaultChefValues: Partial<TChef> = {
+  name: '',
+  email: '',
+  title: '',
+  experience: 0,
+  contactNumber: '',
+  description: '',
+  image: '',
+  password: '',
+};
+
+export const defaultBlogValues: TBlog = {
+  name: "",
+  title: "",
+  description: "",
+  image: "",
 };

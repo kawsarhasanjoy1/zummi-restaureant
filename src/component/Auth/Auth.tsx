@@ -19,7 +19,6 @@ const Auth = () => {
     logOutUser(router);
   };
 
- 
   useEffect(() => {
     const fetchToken = async () => {
       setLoading(false);
@@ -34,7 +33,7 @@ const Auth = () => {
 
   return (
     <div>
-      {user && token ? (
+      {user || token ? (
         <button
           onClick={HandleToLogOut}
           className="hidden md:block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-[14px]"

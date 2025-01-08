@@ -1,5 +1,6 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import Input from "./Input";
+import { Input } from "./Input";
+
 
 const IngredientsFields = ({ name }: { name: string }) => {
   const { control } = useFormContext();
@@ -15,6 +16,7 @@ const IngredientsFields = ({ name }: { name: string }) => {
           {/* Ingredient Name Input */}
           <Input
             placeholder="Enter ingredient name"
+            editL="text-black"
             label="Ingredient Name"
             name={`${name}[${index}].name`} // Unique name for ingredient name
             edit="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
@@ -25,6 +27,7 @@ const IngredientsFields = ({ name }: { name: string }) => {
             {/* Ingredient Quantity Input */}
             <div className="md:col-span-10 col-span-9">
               <Input
+                editL="text-black"
                 placeholder="Enter ingredient quantity"
                 label="Quantity"
                 name={`${name}[${index}].quantity`} // Unique name for ingredient quantity

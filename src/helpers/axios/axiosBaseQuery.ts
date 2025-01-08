@@ -1,10 +1,11 @@
-import { createApi } from "@reduxjs/toolkit/query";
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
-import axios from "axios";
 import type { AxiosRequestConfig, AxiosError } from "axios";
 import { instance } from "./interceptor";
 
-const axiosBaseQuery =
+
+
+
+export const axiosBaseQuery =
   (
     { baseUrl }: { baseUrl: string } = { baseUrl: "" }
   ): BaseQueryFn<
@@ -21,7 +22,7 @@ const axiosBaseQuery =
   > =>
   async ({ url, method, data, params, headers, contentType }) => {
     try {
-      const result = await instance ({
+      const result = await instance({
         url: baseUrl + url,
         method,
         data,
@@ -31,15 +32,15 @@ const axiosBaseQuery =
         },
       });
       return { data: result.data };
-    } catch (axiosError) {
-      const err = axiosError as AxiosError;
+    } catch (error) {
+      // Type the error explicitly as AxiosError
+      const axiosError = error as AxiosError;
+      // Return proper error structure
       return {
         error: {
-          status: err.response?.status,
-          data: err.response?.data || err.message,
+          status: axiosError.response?.status,
+          data: axiosError.response?.data || axiosError.message,
         },
       };
     }
   };
-
-

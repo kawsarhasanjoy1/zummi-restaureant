@@ -1,20 +1,27 @@
 "use client";
-import React from "react";
-import ZForm from "@/component/Form/ZForm";
+import React, { use } from "react";
 import { FieldValues } from "react-hook-form";
 import IngredientsFields from "@/component/Form/addIntrigation";
 import FileUpload from "@/component/Form/FileUpload";
 import useUploadImage from "@/hooks/useUploadImage";
 import { defaultAddProduct } from "@/constance/constance";
 import { useAppSelector } from "@/redux/hook";
-import { useCreateProductMutation } from "@/redux/api/productApi";
 import { toast } from "react-toastify";
+import { useGetProductQuery } from "@/redux/api/productApi";
+import ZForm from "@/component/Form/ZForm";
 import { Input } from "@/component/Form/Input";
 
-const page = () => {
+const page = ({ params }: any) => {
+  const resolvedParams = use(params) as any;
+  const id = resolvedParams?.productId;
+  const { data } = useGetProductQuery(id);
+  const updateData = data?.data;
+
+  // Properly structure the default data
+
   const { user } = useAppSelector((store) => store.auth);
-  const [createProduct] = useCreateProductMutation();
-  const handleToAddProduct = async (e: FieldValues) => {
+
+  const updateProduct = async (e: FieldValues) => {
     try {
       const res = await useUploadImage(e?.image);
       if (res?.id) {
@@ -24,10 +31,10 @@ const page = () => {
         e.price = Number(e?.price);
         e.priceOff = Number(e?.priceOff);
         e.additionalInfo.calories = Number(e.additionalInfo.calories);
-        const result = await createProduct(e).unwrap();
-        if (result?.success) {
-          toast.success(result?.message);
-        }
+        // const result = await createProduct(e).unwrap();
+        // if (result?.success) {
+        //   toast.success(result?.message);
+        // }
       }
     } catch (err: any) {
       toast.error(err?.data?.message);
@@ -36,7 +43,7 @@ const page = () => {
 
   return (
     <div className="md:max-w-4xl w-full mx-auto p-6 bg-white shadow-lg rounded-lg border">
-      <ZForm onSubmit={handleToAddProduct} defaultValues={defaultAddProduct}>
+      <ZForm onSubmit={updateProduct} defaultValues={updateData}>
         <div className="text-2xl text-black font-semibold text-center mb-6 flex justify-center items-center gap-6">
           <p className=" border md:w-[300px] w-[80px]"></p>
           <p>Add Product</p>
@@ -129,7 +136,7 @@ const page = () => {
             </div>
           </div>
         </div>
-        {/* //Description */}
+        {/* Description */}
 
         <div className=" mb-6">
           <Input
@@ -210,7 +217,5 @@ const page = () => {
     </div>
   );
 };
-
-// Dynamic Ingredient Fields
 
 export default page;

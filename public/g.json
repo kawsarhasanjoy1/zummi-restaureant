@@ -1,0 +1,153 @@
+[
+    {
+      "name": "Chicken Tikka Masala",
+      "title": "Authentic Chicken Tikka Masala",
+      "stock": 100,
+      "category": "Indian",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 13.99,
+      "priceOff": 11.99,
+      "ingredients": [
+        { "name": "Chicken", "quantity": "200g" },
+        { "name": "Yogurt", "quantity": "50g" },
+        { "name": "Spices", "quantity": "10g" },
+        { "name": "Tomato Puree", "quantity": "100g" }
+      ],
+      "description": "Experience the rich, aromatic flavors of authentic Chicken Tikka Masala. Marinated chicken is cooked to tender perfection and then simmered in a creamy, spiced tomato sauce. This dish brings together the best of Indian cuisine with its bold flavors and comforting textures. The balanced blend of spices adds depth, while the creamy sauce provides a smooth and velvety finish. Served best with warm naan bread or steamed basmati rice, this dish is a must-try for food enthusiasts. The chicken is juicy, the sauce is luxurious, and every bite is packed with flavor. Enjoy this classic dish as part of a family dinner or a special treat for yourself.",
+      "image": "https://example.com/images/chicken-tikka-masala.jpg",
+      "additionalInfo": {
+        "calories": 320,
+        "protein": "28g",
+        "totalFat": "12g",
+        "size": "Large"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 140
+    },
+    {
+      "name": "Chocolate Brownie",
+      "title": "Rich and Fudgy Chocolate Brownie",
+      "stock": 250,
+      "category": "Dessert",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 4.99,
+      "priceOff": 3.99,
+      "ingredients": [
+        { "name": "Dark Chocolate", "quantity": "100g" },
+        { "name": "Butter", "quantity": "50g" },
+        { "name": "Sugar", "quantity": "80g" },
+        { "name": "Flour", "quantity": "60g" }
+      ],
+      "description": "Indulge in the rich and decadent flavors of our Chocolate Brownie. Made with premium dark chocolate and butter, these brownies are incredibly fudgy and moist. Each bite melts in your mouth, leaving a burst of chocolatey goodness. A slight crunch on the edges gives way to a gooey center that is simply irresistible. Perfect as a dessert or an afternoon treat, these brownies pair beautifully with a scoop of vanilla ice cream or a drizzle of warm chocolate sauce. Share them with loved ones or enjoy them all by yourself—no judgment here!",
+      "image": "https://example.com/images/chocolate-brownie.jpg",
+      "additionalInfo": {
+        "calories": 200,
+        "protein": "3g",
+        "totalFat": "10g",
+        "size": "Medium"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 300
+    },
+    {
+      "name": "Caesar Salad",
+      "title": "Classic Caesar Salad",
+      "stock": 180,
+      "category": "Salad",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 9.99,
+      "priceOff": 8.49,
+      "ingredients": [
+        { "name": "Romaine Lettuce", "quantity": "200g" },
+        { "name": "Parmesan Cheese", "quantity": "30g" },
+        { "name": "Croutons", "quantity": "50g" },
+        { "name": "Caesar Dressing", "quantity": "50g" }
+      ],
+      "description": "Crisp Romaine lettuce, crunchy croutons, and a generous sprinkle of Parmesan cheese come together to create our classic Caesar Salad. Tossed in a creamy Caesar dressing, this salad is both simple and satisfying. Whether you're enjoying it as a main course or a side dish, the balanced flavors and textures make it a favorite among salad lovers. Each bite delivers a perfect combination of freshness, creaminess, and crunch, making it a timeless choice for any meal. Add grilled chicken or shrimp to elevate this dish to a complete meal that's both healthy and delicious.",
+      "image": "https://example.com/images/caesar-salad.jpg",
+      "additionalInfo": {
+        "calories": 250,
+        "protein": "10g",
+        "totalFat": "18g",
+        "size": "Medium"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 90
+    },
+    {
+      "name": "Margherita Pizza",
+      "title": "Classic Margherita Pizza",
+      "stock": 100,
+      "category": "Italian",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 14.99,
+      "priceOff": 12.99,
+      "ingredients": [
+        { "name": "Tomato Sauce", "quantity": "100g" },
+        { "name": "Mozzarella Cheese", "quantity": "200g" },
+        { "name": "Fresh Basil", "quantity": "10g" },
+        { "name": "Pizza Dough", "quantity": "1 base" }
+      ],
+      "description": "The simplicity of a Margherita Pizza is its ultimate sophistication. This classic Italian pizza features a thin, crispy crust topped with a rich tomato sauce, gooey mozzarella cheese, and fresh basil leaves. Each ingredient shines, coming together to create a harmonious blend of flavors. Baked in a wood-fired oven, the crust has a perfect balance of chewiness and crispiness. The fresh basil adds a burst of aromatic freshness that elevates the dish. Whether you're a pizza enthusiast or a first-timer, the Margherita Pizza is a must-try that celebrates the beauty of simplicity.",
+      "image": "https://example.com/images/margherita-pizza.jpg",
+      "additionalInfo": {
+        "calories": 300,
+        "protein": "15g",
+        "totalFat": "10g",
+        "size": "Large"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 110
+    },
+    {
+      "name": "Grilled Salmon",
+      "title": "Perfectly Grilled Salmon",
+      "stock": 90,
+      "category": "Seafood",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 18.99,
+      "priceOff": 16.99,
+      "ingredients": [
+        { "name": "Salmon Fillet", "quantity": "200g" },
+        { "name": "Lemon", "quantity": "1 slice" },
+        { "name": "Olive Oil", "quantity": "10ml" },
+        { "name": "Herbs", "quantity": "5g" }
+      ],
+      "description": "Savor the taste of our perfectly grilled salmon, seasoned with fresh herbs and a hint of lemon. This dish showcases the natural flavors of high-quality salmon, cooked to perfection with a flaky texture and a rich, buttery flavor. Drizzled with olive oil and garnished with herbs, it's both healthy and delicious. Paired with roasted vegetables or a side of wild rice, this meal is perfect for seafood lovers and those seeking a nutritious yet indulgent dining experience.",
+      "image": "https://example.com/images/grilled-salmon.jpg",
+      "additionalInfo": {
+        "calories": 350,
+        "protein": "30g",
+        "totalFat": "15g",
+        "size": "Large"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 160
+    },
+    {
+      "name": "Vanilla Ice Cream",
+      "title": "Creamy Vanilla Ice Cream",
+      "stock": 300,
+      "category": "Dessert",
+      "userId": "60d5f25e8e62000b8c8f9b7b",
+      "price": 3.99,
+      "priceOff": 2.99,
+      "ingredients": [
+        { "name": "Milk", "quantity": "200ml" },
+        { "name": "Sugar", "quantity": "50g" },
+        { "name": "Vanilla Extract", "quantity": "10ml" },
+        { "name": "Cream", "quantity": "50ml" }
+      ],
+      "description": "Indulge in the creamy goodness of our classic Vanilla Ice Cream. Made with fresh milk, cream, and real vanilla extract, this dessert is smooth, rich, and bursting with flavor. Perfect on its own or paired with your favorite desserts like warm brownies, pies, or fresh fruit. It's a timeless treat that appeals to all ages and occasions.",
+      "image": "https://example.com/images/vanilla-ice-cream.jpg",
+      "additionalInfo": {
+        "calories": 150,
+        "protein": "3g",
+        "totalFat": "8g",
+        "size": "Small"
+      },
+      "ratingAverage": 4.5,
+      "ratingQuantity": 220
+    }
+  ]
+  

@@ -23,6 +23,8 @@ export type TForm = {
 
 export interface InputFieldProps {
   name: string;
+  min?: number;
+  editL?: string;
   label: string;
   placeholder?: string;
   type: string;

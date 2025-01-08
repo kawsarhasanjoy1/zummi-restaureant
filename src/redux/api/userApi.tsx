@@ -14,7 +14,7 @@ const userApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: "/login",
         method: "POST",
-        body: data,
+        data: data,
       }),
     }),
     upRole: build.mutation({
@@ -25,11 +25,23 @@ const userApi = baseApi.injectEndpoints({
       }),
     }),
     fetchAllUser: build.query({
-      query: () => ({
-        url: `users`,
-        method: "GET",
-      }),
+      query: (filters) => {
+        const query = new URLSearchParams(filters).toString();
+        return {
+          url: `/all-user?${query}`,
+          method: "GET",
+        };
+      },
       providesTags: [tagTypes.user],
+    }),
+    deleteUser: build.mutation({
+      query: (id) => {
+        return {
+          url: `/delete-user/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [tagTypes.user],
     }),
   }),
 });
@@ -39,4 +51,5 @@ export const {
   useLoginUserMutation,
   useUpRoleMutation,
   useFetchAllUserQuery,
+  useDeleteUserMutation,
 } = userApi;

@@ -1,5 +1,4 @@
 "use client";
-import Input from "@/component/Form/Input";
 import ZForm from "@/component/Form/ZForm";
 import { defaultLoginUser } from "@/constance/constance";
 import { setUser } from "@/redux/api/features/authSlice";
@@ -12,6 +11,7 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { authKey } from "@/constance/authKey";
 import { useRouter } from "next/navigation";
+import { Input } from "@/component/Form/Input";
 const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
 const page = () => {
   const router = useRouter();

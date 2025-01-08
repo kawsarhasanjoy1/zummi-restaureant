@@ -4,7 +4,6 @@ import product from '../../../../../public/menu.json'
 
 const page = ({params}: {params: any}) => {
     const singleProduct = product?.filter(product => product?._id === params?.shopId)
-    console.log(singleProduct)
     return (
         <div>
           {

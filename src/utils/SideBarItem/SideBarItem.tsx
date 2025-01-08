@@ -41,9 +41,19 @@ const SideBarItem = (role: UserRole) => {
           icon: FaUsersGear,
         },
         {
+          title: "Create chef",
+          path: `/${role}/create-chef`,
+          icon: MdLibraryAdd,
+        },
+        {
           title: "chefs",
           path: `/${role}/chefs`,
           icon: PiChefHatDuotone,
+        },
+        {
+          title: "Create blog",
+          path: `/${role}/create-blogs`,
+          icon: MdLibraryAdd,
         },
         {
           title: "blogs",

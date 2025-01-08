@@ -1,6 +1,6 @@
 "use client";
 import FileUpload from "@/component/Form/FileUpload";
-import Input from "@/component/Form/Input";
+import { Input } from "@/component/Form/Input";
 import ZForm from "@/component/Form/ZForm";
 import { defaultUser } from "@/constance/constance";
 import useUploadImage from "@/hooks/useUploadImage";
