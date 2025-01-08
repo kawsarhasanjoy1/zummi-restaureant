@@ -1,14 +1,19 @@
 "use client";
 import React, { useState } from "react";
 
-const CommonSelect = () => {
+const CommonSelect = ({ selectedValue, setSelectedValue }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedValue, setSelectedValue] = useState<string | null>(
-    "Choose One"
-  );
-  const options = ["Apple", "banana", "chips"];
+
+  const options = [
+    "-category",
+    "createdAt",
+    "price",
+    "-price",
+    "priceOff",
+    "-priceOff",
+  ];
   return (
-    <div>
+    <div className=" ">
       {/* dropdown - btn */}
       <div
         onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +50,7 @@ const CommonSelect = () => {
           isOpen
             ? "visible top-0 opacity-100 overflow-hidden"
             : "invisible -top-4 opacity-0"
-        } relative mx-auto my-4 w-72 rounded-md py-4 border text-white duration-300 overflow-hidden -mb-24 bg-red-500`}
+        } relative mx-auto my-4 w-72 rounded-md py-4 border text-white duration-300 overflow-hidden -mb-56 bg-red-500 z-10`}
       >
         {options.map((option, idx) => (
           <div

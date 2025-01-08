@@ -1,9 +1,8 @@
 "use client";
 import CommonSwiper from "@/component/Common/CommonSwiper";
-import { MenuTpe } from "@/type/menu";
 import React from "react";
 
-const MenuSwiper = ({ product }: { product: MenuTpe[] }) => {
+const MenuSwiper = ({ product }: { product: any[] }) => {
   return (
     <div>
       <CommonSwiper blogs={product} />

@@ -17,7 +17,7 @@ const Header = () => {
   const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
 
   const token = getTokenFromLocalStorage(authKey);
-  console.log(token);
+  (token);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

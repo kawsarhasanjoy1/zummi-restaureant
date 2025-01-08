@@ -5,10 +5,9 @@ import blogs from "../../../../public/blog.json";
 import BlogRight from "@/component/ui/Blog/BlogRight";
 import CommonBanner from "@/component/Common/CommonBanner";
 import CommonSwiper from "@/component/Common/CommonSwiper";
-import { BlogType } from "@/type/blog";
 
 const page = () => {
-  const BlogTs: BlogType[] = blogs;
+  const BlogTs = blogs;
 
   return (
     <div>

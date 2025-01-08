@@ -1,10 +1,9 @@
-import { BlogType } from "@/type/blog";
 import Image from "next/image";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
 
-const BlogRight = ({ blogs }: { blogs: BlogType[] }) => {
+const BlogRight = ({ blogs }: { blogs: any[] }) => {
   const sortedBlogs = blogs.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
@@ -26,7 +25,7 @@ const BlogRight = ({ blogs }: { blogs: BlogType[] }) => {
       <div className=" border w-[350px] px-3 py-6">
         <p className=" uppercase text-xl">Recent Posts</p>
         <div className=" space-y-4 mt-5">
-          {sortedBlogs?.slice(0, 3)?.map((blog: BlogType) => {
+          {sortedBlogs?.slice(0, 3)?.map((blog: any) => {
             return (
               <div
                 key={blog?._id}

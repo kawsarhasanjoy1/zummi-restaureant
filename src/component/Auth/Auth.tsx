@@ -16,7 +16,7 @@ const Auth = () => {
   // Handle logout
   const HandleToLogOut = () => {
     dispatch(logOut());
-    logOutUser(router);
+    logOutUser();
   };
 
   useEffect(() => {

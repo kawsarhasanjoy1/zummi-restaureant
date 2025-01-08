@@ -25,7 +25,7 @@ const AddBlogForm = () => {
         image: res?.display_url,
       };
       const result = await createBlog(blogData).unwrap();
-      console.log(result)
+      (result)
       if (result?.success) {
         toast.success(result?.message);
       }

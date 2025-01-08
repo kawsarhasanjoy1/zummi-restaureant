@@ -33,7 +33,7 @@ const page = () => {
         toast.error(res?.error?.data?.message);
       }
     } catch (err: any) {
-      console.log(err);
+      (err);
       toast.error(err?.data?.message);
     }
   };

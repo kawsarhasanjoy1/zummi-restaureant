@@ -11,14 +11,14 @@ import { useState } from "react";
 const page = () => {
   const [filters, setFilters] = useState({
     page: 1,
-    limit: 2,
+    limit: 8,
     searchTerm: "",
     sort: "-createdAt",
     // name: "",
   });
 
   const { error, data, refetch, isLoading } = useFetchChefQuery(filters);
-  console.log(data);
+  (data);
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };
@@ -86,7 +86,7 @@ const page = () => {
             <div className=" text-black">
               {data?.data?.meta && (
                 <Pagination
-                  meta={data.data.meta}
+                  meta={data?.data?.meta}
                   onPageChange={handlePageChange}
                 />
               )}

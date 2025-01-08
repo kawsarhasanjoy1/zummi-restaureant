@@ -1,10 +1,9 @@
 import Button from "@/component/Button/Button";
-import { MenuTpe } from "@/type/menu";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductDetails = ({ product }: { product: MenuTpe }) => {
+const ProductDetails = ({ product }: { product: any }) => {
   return (
     <div>
       <div className=" relative">

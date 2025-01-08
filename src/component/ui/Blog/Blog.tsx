@@ -4,9 +4,9 @@ import React from "react";
 import { CiCalendarDate } from "react-icons/ci";
 import { RiAdminLine } from "react-icons/ri";
 import Button from "@/component/Button/Button";
-import { BlogType } from "@/type/blog";
 
-const Blog = ({ blog }: { blog : BlogType}) => {
+
+const Blog = ({ blog }: { blog : any}) => {
   return (
     <div className=" space-y-4 col-span-8 border border-gray-600">
       <Image

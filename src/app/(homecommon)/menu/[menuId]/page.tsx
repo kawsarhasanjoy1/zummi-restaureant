@@ -2,7 +2,7 @@ import ProductDetails from "@/component/ui/ProductDetails/ProductDetails";
 import React from "react";
 import product from "../../../../../public/menu.json";
 import MenuSwiper from "@/component/ui/MenuSwiper/MenuSwiper";
-import { MenuTpe } from "@/type/menu";
+
 
 const page = ({ params }: { params: any }) => {
   const singleMenu = product?.filter(
@@ -12,7 +12,7 @@ const page = ({ params }: { params: any }) => {
   return (
     <div className=" space-y-20">
       <div>
-        {singleMenu?.map((product: MenuTpe) => (
+        {singleMenu?.map((product: any) => (
           <ProductDetails key={product?._id} product={product} />
         ))}
       </div>

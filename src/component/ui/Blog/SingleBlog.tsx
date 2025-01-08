@@ -7,10 +7,10 @@ import { RiAdminLine } from "react-icons/ri";
 import BlogRight from "./BlogRight";
 import CommonSwiper from "@/component/Common/CommonSwiper";
 import CommonBanner from "@/component/Common/CommonBanner";
-import { BlogType } from "@/type/blog";
 
 
-const SingleBlog = ({ blog }: { blog: BlogType }) => {
+
+const SingleBlog = ({ blog }: { blog: any }) => {
   return (
     <div className=" px-2">
      <div>

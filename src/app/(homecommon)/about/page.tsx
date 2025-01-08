@@ -5,7 +5,6 @@ import React from "react";
 import Product from "../../../../public/product.json";
 import CommonBanner from "@/component/Common/CommonBanner";
 import CommonSwiper from "@/component/Common/CommonSwiper";
-import { ProductType } from "@/type/product";
 
 const page = () => {
   return (
@@ -17,7 +16,7 @@ const page = () => {
         <About />
       </div>
       <div className=" bg-[#343a40] md:flex justify-center items-center gap-8 px-16 py-24 md:mx-10 space-y-16 md:space-y-0 mt-40 rounded-md">
-        {Product?.slice(0,4)?.map((product: ProductType) => (
+        {Product?.slice(0,4)?.map((product: any) => (
           <ProductAbout key={product?._id} Product={product} />
         ))}
       </div>

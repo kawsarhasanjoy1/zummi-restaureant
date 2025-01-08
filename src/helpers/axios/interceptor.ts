@@ -32,14 +32,16 @@ instance.interceptors.response.use(
   async (error) => {
     const status = error.response?.status;
     if (status === 401 || status === 403) {
-      logOutUser(authKey)
+      logOutUser()
     }
 
     // Log the error message
     const errorMessage = error.response?.data || error.message || 'Unknown error';
-    console.error(errorMessage);
+    if (errorMessage) {
+      logOutUser()
+    }
 
-    return Promise.reject(error); // Reject the promise to propagate the error
+    return Promise.reject(error || errorMessage); // Reject the promise to propagate the error
   }
 );
 

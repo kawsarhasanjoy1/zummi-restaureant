@@ -5,7 +5,7 @@ import FoodMenuCart from "./FoodMenuCart";
 import FoodVideo from "./FoodVideo";
 import CommonDesign from "@/component/Common/CommonDesign";
 import SelectButton from "@/component/Button/SelectButton";
-import { MenuTpe } from "@/type/menu";
+
 
 const FoodMenu = () => {
   const [activeTab, setActiveTab] = useState("morning");
@@ -50,9 +50,9 @@ const FoodMenu = () => {
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-10 ">
           {menu
-            ?.filter((menu: MenuTpe) => menu?.schedule === activeTab)
+            ?.filter((menu: any) => menu?.schedule === activeTab)
             .slice(0, 8)
-            .map((item: MenuTpe) => (
+            .map((item: any) => (
               <FoodMenuCart key={item?._id} menu={item} />
             ))}
         </div>

@@ -15,7 +15,7 @@ const UserTable = ({
   const [deleteUser] = useDeleteUserMutation();
   const HandleToDelete = async (e) => {
     const res = await deleteUser(e).unwrap();
-    console.log(res);
+    (res);
     if (res?.success) {
       toast.success(res?.message);
     }
