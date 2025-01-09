@@ -1,14 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import menu from "../../../../public/menu.json";
 import FoodMenuCart from "./FoodMenuCart";
 import FoodVideo from "./FoodVideo";
 import CommonDesign from "@/component/Common/CommonDesign";
 import SelectButton from "@/component/Button/SelectButton";
-
+import { TProduct } from "@/type/product";
+import { useGetProductsQuery } from "@/redux/api/productApi";
+import LoadingSpinner from "@/app/loading";
 
 const FoodMenu = () => {
   const [activeTab, setActiveTab] = useState("morning");
+  const { data, isLoading } = useGetProductsQuery(undefined);
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className=" pt-32 mb-20">
       <div className=" flex flex-col justify-center items-center space-y-3">
@@ -49,10 +54,10 @@ const FoodMenu = () => {
         </div>
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-10 ">
-          {menu
-            ?.filter((menu: any) => menu?.schedule === activeTab)
-            .slice(0, 8)
-            .map((item: any) => (
+          {data?.data?.result
+            ?.filter((menu: any) => menu?.category === activeTab)
+            ?.slice(0, 4)
+            ?.map((item: any) => (
               <FoodMenuCart key={item?._id} menu={item} />
             ))}
         </div>

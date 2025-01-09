@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/app/loading";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
 import ProductTable from "@/component/Table/ProductTable";
 import UserTable from "@/component/Table/UserTable";
@@ -17,6 +18,9 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useFetchAllUserQuery(filters);
+  if (isLoading) {
+    return <LoadingSpinner/>
+  }
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };

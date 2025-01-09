@@ -1,8 +1,9 @@
+import { TProduct } from "@/type/product";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const FoodMenuCart = ({ menu }: { menu: any }) => {
+const FoodMenuCart = ({ menu }: { menu: TProduct }) => {
   return (
     <div className=" flex justify-center items-center gap-4">
       <div>
@@ -18,8 +19,11 @@ const FoodMenuCart = ({ menu }: { menu: any }) => {
       <div className="">
         <p className=" uppercase text-xl">
           {" "}
-          <Link className=" hover:text-yellow-600 duration-500" href={`menu/${menu?._id}`}>
-            {menu?.category}
+          <Link
+            className=" hover:text-yellow-600 duration-500"
+            href={`menu/${menu?._id}`}
+          >
+            {menu?.name}
           </Link>
         </p>
         <p>{menu?.description.slice(0, 46)}</p>

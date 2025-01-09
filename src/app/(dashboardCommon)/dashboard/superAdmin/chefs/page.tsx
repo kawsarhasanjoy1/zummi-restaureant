@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/app/loading";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
 import ChefTable from "@/component/Table/ChefTable";
 import UserTable from "@/component/Table/UserTable";
@@ -18,7 +19,9 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useFetchChefQuery(filters);
-  (data);
+  if (isLoading) {
+    return <LoadingSpinner/>
+  }
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };

@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/app/loading";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
 import BlogTable from "@/component/Table/BlogTable";
 import Pagination from "@/QueryBuilders/Pagination";
@@ -16,6 +17,9 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useFetchBlogQuery(filters);
+  if (isLoading) {
+    return <LoadingSpinner/>
+  }
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };

@@ -1,14 +1,23 @@
 "use client";
 import CommonBanner from "@/component/Common/CommonBanner";
 import Shop from "@/component/ui/Shop/Shop";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommonSelect from "@/component/Common/CommonSelect";
 import { useGetProductsQuery } from "@/redux/api/productApi";
 import Pagination from "@/QueryBuilders/Pagination";
+import LoadingSpinner from "@/app/loading";
 
 const page = () => {
-  const [selectedValue, setSelectedValue] = useState<string | null>("-createdAt");
-  console.log(selectedValue)
+  const [selectedValue, setSelectedValue] = useState<string | null>(
+    "-createdAt"
+  );
+  useEffect(() => {
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      sort: selectedValue,
+    }));
+  }, [selectedValue]);
+
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
@@ -18,6 +27,9 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useGetProductsQuery(filters);
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };
@@ -37,7 +49,7 @@ const page = () => {
       <div>
         <CommonBanner name="Shop" />
       </div>
-      <div className=" flex justify-center items-center py-10">
+      <div className=" flex justify-center items-center py-10 text-black">
         <input
           className=" focus:outline-none border-none px-4 py-3 w-80 rounded-xl"
           onChange={handleToSearch}

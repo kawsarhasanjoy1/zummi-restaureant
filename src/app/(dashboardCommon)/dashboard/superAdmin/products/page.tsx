@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/app/loading";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
 import ProductTable from "@/component/Table/ProductTable";
 import Pagination from "@/QueryBuilders/Pagination";
@@ -16,6 +17,10 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useGetProductsQuery(filters);
+  
+  if (isLoading) {
+    return <LoadingSpinner/>
+  }
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
   };

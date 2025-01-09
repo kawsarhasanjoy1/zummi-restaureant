@@ -1,11 +1,15 @@
-'use client'
+"use client";
+import LoadingSpinner from "@/app/loading";
 import CommonBanner from "@/component/Common/CommonBanner";
 import CommonSwiper from "@/component/Common/CommonSwiper";
 import FoodMenu from "@/component/ui/FoodMenu/FoodMenu";
-import React from "react";
-import menu from '../../../../public/menu.json'
+import { useGetProductsQuery } from "@/redux/api/productApi";
 
 const page = () => {
+  const { data, isLoading } = useGetProductsQuery(undefined);
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div>
       <div>
@@ -15,7 +19,7 @@ const page = () => {
         <FoodMenu />
       </div>
       <div>
-        <CommonSwiper blogs={menu} />
+        <CommonSwiper blogs={data?.data?.result} />
       </div>
     </div>
   );
