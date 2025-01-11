@@ -12,9 +12,14 @@ import Image from "next/image";
 
 import ChefDetails from "../ChefDetails/ChefDetails";
 import CommonDesign from "@/component/Common/CommonDesign";
+import { useFetchChefQuery } from "@/redux/api/chefApi";
+import LoadingSpinner from "@/app/loading";
 
-
-const Chef = ({ chefs }: { chefs: any[] }) => {
+const Chef = () => {
+  const { data , isLoading } = useFetchChefQuery(undefined);
+  if (isLoading) {
+    <LoadingSpinner/>
+  }
   return (
     <div className=" pt-48">
       <div className=" flex flex-col justify-center items-center space-y-4 mb-14">
@@ -42,20 +47,21 @@ const Chef = ({ chefs }: { chefs: any[] }) => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <div className="relative bg-stone-500 h-[500px] w-[300px] group">
-          {chefs?.map((chef: any) => {
+        <div className="relative bg-stone-500 h-[500px] w-[380px] group">
+          {data?.data?.result?.map((chef: any) => {
             return (
               <SwiperSlide key={chef?._id} className=" absolute top-4">
                 <Image
+                className=""
                   src={chef?.image}
                   quality={100}
-                  height={300}
-                  width={200}
+                  height={700}
+                  width={650}
                   alt=""
                 />
                 <div className="absolute bottom-4 w-56 bg-stone-700 text-white text-center py-2">
                   <p className=" uppercase">{chef?.name}</p>
-                  <p className=" uppercase text-sm">{chef?.role}</p>
+                  <p className=" uppercase text-sm">{chef?.title}</p>
                 </div>
               </SwiperSlide>
             );

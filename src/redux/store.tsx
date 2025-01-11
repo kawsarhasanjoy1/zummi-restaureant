@@ -10,10 +10,12 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { orderPersistSlice } from "./api/features/orderSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authPersistReducer,
+    order: orderPersistSlice,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -1,9 +1,6 @@
-import { useDeleteUserMutation } from "@/redux/api/userApi";
 import { formatDate } from "@/utils/FormateDate/FormateDate";
 import Image from "next/image";
 import React from "react";
-import { RiDeleteBin2Fill } from "react-icons/ri";
-import { toast } from "react-toastify";
 
 const ChefTable = ({ chef }: { chef: Record<string, any> }) => {
   return (

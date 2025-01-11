@@ -19,6 +19,7 @@ const page = () => {
   const [loginUser] = useLoginUserMutation();
 
   const HandleToLogin = async (values: FieldValues) => {
+    console.log(values)
     try {
       const res: any = await loginUser(values).unwrap();
       const token = res?.data?.token;
@@ -33,8 +34,7 @@ const page = () => {
         toast.error(res?.error?.data?.message);
       }
     } catch (err: any) {
-      (err);
-      toast.error(err?.data?.message);
+      toast.error(err?.data?.message || err?.data);
     }
   };
 

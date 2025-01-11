@@ -1,18 +1,15 @@
+"use client";
+import React, { use } from "react";
+import { useFetchSingleBlogQuery } from "@/redux/api/blogApi";
 import SingleBlog from "@/component/ui/Blog/SingleBlog";
-import React from "react";
-import blogs from "../../../../../public/blog.json";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Page = ({ params }: { params: any }) => {
-  const { blogId } = params;
-  const singleBlog = blogs.filter((blog) => blog._id === blogId);
-
+  const blogId = use<any>(params).blogId;
+  const { data } = useFetchSingleBlogQuery(blogId);
+  console.log(data);
   return (
     <div>
-      {singleBlog.length > 0 ? (
-        singleBlog.map((blog) => <SingleBlog key={blog._id} blog={blog} />)
-      ) : (
-        <p>No blog found with the given ID.</p>
-      )}
+      <SingleBlog blog={data?.data} />
     </div>
   );
 };

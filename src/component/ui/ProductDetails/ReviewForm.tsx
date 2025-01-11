@@ -22,8 +22,7 @@ const ReviewForm = ({ product }) => {
       };
       const res = await createReview(reviewField).unwrap();
       if (res) {
-        console.log(res);
-        toast.success("success");
+        toast.success(res?.message);
       }
     } catch (err:any) {
       toast.error(err?.data?.message)

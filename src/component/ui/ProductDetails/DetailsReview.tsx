@@ -41,7 +41,7 @@ const DetailsReview = ({ product }: { product: any }) => {
                 />
               </div>
               <p className="font-medium text-xl leading-8 text-gray-900 text-center">
-                {product?.reviews.length} Ratings
+                {product?.ratingQuantity} Ratings
               </p>
             </div>
           </div>

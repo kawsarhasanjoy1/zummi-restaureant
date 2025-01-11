@@ -1,17 +1,48 @@
 "use client";
 import Button from "@/component/Button/Button";
 import { TProduct } from "@/type/product";
+const image = "https://i.ibb.co.com/Z6nf9r3/istockphoto-1416818056-612x612.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import DetailsReview from "./DetailsReview";
 import ReviewForm from "./ReviewForm";
 import SelectButton from "@/component/Button/SelectButton";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { addToOrder } from "@/redux/api/features/orderSlice";
+import { toast } from "react-toastify";
 
 const ProductDetails = ({ product }: { product: TProduct }) => {
   const [activeTab, setActiveTab] = useState("description");
-  const image =
-    "https://i.ibb.co.com/Z6nf9r3/istockphoto-1416818056-612x612.jpg";
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((store) => store?.auth);
+  const [quantity, setQuantity] = useState<number>(1);
+  const HandleToCount = (e) => {
+    const count = e == "increase" ? quantity + 1 : quantity - 1;
+    setQuantity(count);
+  };
+  const totalPrice: number =
+    product?.priceOff > 0
+      ? Number(product?.priceOff * quantity)
+      : Number(product?.price * quantity);
+  const HandleToCart = () => {
+    const order = {
+      userId: user?.id,
+      productId: product?._id,
+      name: product?.name,
+      quantity: quantity,
+      category: product?.category,
+      price: totalPrice,
+      image: product?.image,
+    };
+    try {
+      dispatch(addToOrder({ order: order }));
+    } catch (err: any) {
+      toast?.error(
+        err?.message || "An error occurred while adding to the order."
+      );
+    }
+  };
   return (
     <div className="">
       <div className=" relative">
@@ -46,29 +77,36 @@ const ProductDetails = ({ product }: { product: TProduct }) => {
               alt=""
             />
           </div>
-          <div className=" space-y-8">
+          <div className=" space-y-7">
             <div className=" space-y-4 uppercase">
-              <p className=" text-red-500 text-2xl">${product?.price}</p>
+              <p className=" text-red-500 text-2xl">
+                ${product?.priceOff ? product?.priceOff : product?.price}
+              </p>
               <p className=" text-xl">{product?.name}</p>
               <p className=" text-xl">{product?.title}</p>
               <p className=" text-sm">{product?.description.slice(0, 200)}</p>
             </div>
             <div className=" flex items-center gap-4">
-              <div className=" flex justify-center items-center gap-4 border w-32 bg-white text-black">
-                <button className=" text-xl">-</button>
-                <input
-                  defaultValue={1}
-                  max={100}
-                  className=" w-10 ml-4 text-black flex justify-center items-center border-none hover:border-none focus:outline-none py-2"
-                  type="number"
-                  name=""
-                  id=""
-                />
-                <button className=" text-xl">+</button>
+              <div className=" flex justify-center items-center gap-4 border w-32 bg-white text-black h-11">
+                <button
+                  disabled={quantity === 1}
+                  onClick={() => HandleToCount("disIncrease")}
+                  className=" text-xl"
+                >
+                  -
+                </button>
+                <p>{quantity}</p>
+                <button
+                  disabled={quantity === 20}
+                  onClick={() => HandleToCount("increase")}
+                  className=" text-xl"
+                >
+                  +
+                </button>
               </div>
               <div className="">
                 <Button className=" size-36 group-hover:scale-100">
-                  Add to cart
+                  <span onClick={HandleToCart}>Add to cart</span>
                 </Button>
               </div>
             </div>
@@ -93,6 +131,10 @@ const ProductDetails = ({ product }: { product: TProduct }) => {
                   );
                 })}
               </div>
+            </div>
+            <div className=" flex justify-between items-center text-xl">
+              <p className="">Total price</p>
+              <p className=" text-red-500">${totalPrice.toFixed(2)} </p>
             </div>
           </div>
         </div>

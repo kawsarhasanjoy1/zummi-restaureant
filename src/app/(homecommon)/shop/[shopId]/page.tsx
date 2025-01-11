@@ -1,16 +1,20 @@
-import ProductDetails from '@/component/ui/ProductDetails/ProductDetails';
-import React from 'react';
-import product from '../../../../../public/menu.json'
+'use client'
+import ProductDetails from "@/component/ui/ProductDetails/ProductDetails";
+import { useGetProductQuery } from "@/redux/api/productApi";
+import LoadingSpinner from "@/app/loading";
+import { use } from "react";
 
-const page = ({params}: {params: any}) => {
-    const singleProduct = product?.filter(product => product?._id === params?.shopId)
-    return (
-        <div>
-          {
-            singleProduct?.map(product =>   <ProductDetails key={product?._id} product={product}/>)
-          }
-        </div>
-    );
+const page = ({ params }: { params: any }) => {
+  const productId = use<any>(params).shopId;
+  const { data, isLoading } = useGetProductQuery(productId);
+  if (isLoading) {
+    <LoadingSpinner />;
+  }
+  return (
+    <div>
+      <ProductDetails product={data?.data} />
+    </div>
+  );
 };
 
 export default page;

@@ -37,9 +37,9 @@ instance.interceptors.response.use(
 
     // Log the error message
     const errorMessage = error.response?.data || error.message || 'Unknown error';
-    if (errorMessage) {
-      logOutUser()
-    }
+    // if (errorMessage) {
+    //   logOutUser()
+    // }
 
     return Promise.reject(error || errorMessage); // Reject the promise to propagate the error
   }

@@ -1,13 +1,10 @@
+import { formatDate } from "@/utils/FormateDate/FormateDate";
 import Image from "next/image";
 import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
-
+const image = "https://i.ibb.co/2nsWcwH/1722859959475-393850527.jpg";
 const BlogRight = ({ blogs }: { blogs: any[] }) => {
-  const sortedBlogs = blogs.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
-
   return (
     <div className=" space-y-10">
       <div className=" flex items-center justify-center border w-[350px] py-16">
@@ -25,7 +22,7 @@ const BlogRight = ({ blogs }: { blogs: any[] }) => {
       <div className=" border w-[350px] px-3 py-6">
         <p className=" uppercase text-xl">Recent Posts</p>
         <div className=" space-y-4 mt-5">
-          {sortedBlogs?.slice(0, 3)?.map((blog: any) => {
+          {blogs?.slice(0, 3)?.map((blog: any) => {
             return (
               <div
                 key={blog?._id}
@@ -33,18 +30,18 @@ const BlogRight = ({ blogs }: { blogs: any[] }) => {
               >
                 <Image
                   className=" w-16 h-16 "
-                  src={blog?.image}
+                  src={blog?.image ? blog?.image : image}
                   width={100}
                   height={100}
                   alt=""
                 />
                 <div>
-                  <p className=" text-[16px] hover:text-yellow-500 duration-500">
+                  <p className=" text-[16px] hover:text-yellow-500 duration-500  w-60">
                     {blog?.title}
                   </p>
                   <p className=" flex items-center gap-1 text-sm hover:text-yellow-500 duration-500">
                     <CiCalendarDate />
-                    {blog?.date}
+                    {formatDate(blog?.createdAt)}
                   </p>
                 </div>
               </div>

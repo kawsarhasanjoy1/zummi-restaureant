@@ -18,11 +18,13 @@ const blogApi = baseApi.injectEndpoints({
         };
       },
     }),
-    fetchSingleBlog: build.mutation({
-      query: (id) => ({
-        url: `/get-blog/${id}`,
-        method: "GET",
-      }),
+    fetchSingleBlog: build.query({
+      query: (id) => (
+        {
+          url: `/get-blog/${id}`,
+          method: "GET",
+        }
+      ),
     }),
   }),
 });
@@ -30,5 +32,5 @@ const blogApi = baseApi.injectEndpoints({
 export const {
   useCreateBlogMutation,
   useFetchBlogQuery,
-  useFetchSingleBlogMutation,
+  useFetchSingleBlogQuery,
 } = blogApi;
