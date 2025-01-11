@@ -14,7 +14,7 @@ const CheckOutSummary = () => {
     productId: p?.productId,
     quantity: p?.quantity,
   }));
-  
+
   const HandleToOrder = async (e) => {
     e.preventDefault();
     const target = e?.target;

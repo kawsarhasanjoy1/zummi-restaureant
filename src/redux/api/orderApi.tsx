@@ -1,36 +1,52 @@
+import { tagTypes } from "../TagTypes";
 import { baseApi } from "./baseApi";
 
 const orderApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    createOrder: build.mutation({
-      query: (data) => ({
-        url: "/create-order",
-        method: "POST",
-        data: data,
-      }),
-    }),
     createPayment: build.mutation({
       query: (data) => ({
-        url: "/payment",
+        url: "/create-payment-order",
         method: "POST",
         data: data,
       }),
+      invalidatesTags: [tagTypes.orders]
     }),
-
     fetchOrder: build.query({
       query: (filters) => {
         const query = new URLSearchParams(filters).toString();
         return {
-          url: `/get-order?${query}`,
+          url: `/get-orders?${query}`,
           method: "GET",
         };
       },
+      providesTags: [tagTypes.orders]
+    }),
+    fetchUserOrder: build.query({
+      query: (id) => ({
+        url: `/get-user-order/${id}`,
+        method: "GET",
+      }),
+    }),
+    deleteUserOrder: build.mutation({
+      query: (id) => ({
+        url: `/delete-user-order/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    deleteOrder: build.mutation({
+      query: (id) => ({
+        url: `/delete-order/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.orders]
     }),
   }),
 });
 
 export const {
   useFetchOrderQuery,
-  useCreateOrderMutation,
   useCreatePaymentMutation,
+  useDeleteOrderMutation,
+  useDeleteUserOrderMutation,
+  useFetchUserOrderQuery,
 } = orderApi;

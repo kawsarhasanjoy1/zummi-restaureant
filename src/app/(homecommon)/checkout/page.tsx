@@ -32,7 +32,7 @@ const Page = () => {
         <CommonBanner name="CheckOut" />
       </div>
       {data?.length ? (
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-10 mt-10 px-2">
           <div className="bg-[#FFFF] p-5 shadow-md">
             <div className="flex justify-between font-bold text-xl py-3 text-black">
               <p> Order </p>

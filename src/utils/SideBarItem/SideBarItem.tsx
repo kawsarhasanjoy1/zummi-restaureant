@@ -5,6 +5,7 @@ import { FaUsersGear } from "react-icons/fa6";
 import {
   MdLibraryAdd,
   MdOutlineDashboard,
+  MdOutlinePayment,
   MdOutlineShoppingCart,
   MdReviews,
 } from "react-icons/md";
@@ -64,6 +65,11 @@ const SideBarItem = (role: UserRole) => {
           title: "reviews",
           path: `/${role}/reviews`,
           icon: MdReviews,
+        },
+        {
+          title: "payments",
+          path: `/${role}/payments`,
+          icon: MdOutlinePayment,
         }
       );
       break;
@@ -95,9 +101,19 @@ const SideBarItem = (role: UserRole) => {
           icon: FaUsersGear,
         },
         {
+          title: "Create chef",
+          path: `/${role}/create-chef`,
+          icon: MdLibraryAdd,
+        },
+        {
           title: "chefs",
           path: `/${role}/chefs`,
           icon: PiChefHatDuotone,
+        },
+        {
+          title: "Create blog",
+          path: `/${role}/create-blogs`,
+          icon: MdLibraryAdd,
         },
         {
           title: "blogs",
@@ -108,8 +124,13 @@ const SideBarItem = (role: UserRole) => {
           title: "reviews",
           path: `/${role}/reviews`,
           icon: MdReviews,
+        },
+        {
+          title: "payments",
+          path: `/${role}/payments`,
+          icon: MdOutlinePayment,
         }
-      );
+      )
       break;
     case USER_ROLE.chef:
       roleMenu.push(
