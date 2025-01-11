@@ -9,6 +9,7 @@ const userApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: [tagTypes.user]
     }),
     loginUser: build.mutation({
       query: (data) => ({
@@ -23,6 +24,7 @@ const userApi = baseApi.injectEndpoints({
         method: "POST",
         body: role,
       }),
+      invalidatesTags: [tagTypes.user]
     }),
     fetchAllUser: build.query({
       query: (filters) => {

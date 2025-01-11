@@ -1,3 +1,4 @@
+import { tagTypes } from "../TagTypes";
 import { baseApi } from "./baseApi";
 
 const blogApi = baseApi.injectEndpoints({
@@ -8,6 +9,7 @@ const blogApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
+      invalidatesTags: [tagTypes.blog]
     }),
     fetchBlog: build.query({
       query: (filters) => {
@@ -17,6 +19,7 @@ const blogApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.blog]
     }),
     fetchSingleBlog: build.query({
       query: (id) => (
@@ -25,6 +28,7 @@ const blogApi = baseApi.injectEndpoints({
           method: "GET",
         }
       ),
+      providesTags: [tagTypes.blog]
     }),
   }),
 });

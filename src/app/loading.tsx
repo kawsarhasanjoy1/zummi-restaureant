@@ -5,7 +5,7 @@ const LoadingSpinner = () => {
     <div
       aria-label="Loading..."
       role="status"
-      className="flex items-center justify-center space-x-2 w-full h-screen "
+      className="flex items-center justify-center space-x-2 w-screen md:w-full h-screen "
     >
       <svg
         className="h-20 w-20 animate-spin stroke-gray-500"

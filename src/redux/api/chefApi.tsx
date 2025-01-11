@@ -1,3 +1,4 @@
+import { tagTypes } from "../TagTypes";
 import { baseApi } from "./baseApi";
 
 const chefApi = baseApi.injectEndpoints({
@@ -8,6 +9,7 @@ const chefApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
+      invalidatesTags: [tagTypes.chef]
     }),
     fetchChef: build.query({
       query: (filters) => {
@@ -17,6 +19,7 @@ const chefApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.chef]
     }),
   }),
 });

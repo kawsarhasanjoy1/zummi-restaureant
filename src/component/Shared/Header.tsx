@@ -90,17 +90,21 @@ const Header = () => {
           >
             Dashboard
           </Link>
-          <Link
+         <div>
+          {
+            user ? <div className="md:hidden block px-4 py-2 text-[16px] hover:text-blue-500"><Auth /></div> :  <Link
             href={`/register`}
             className="block px-4 py-2 text-[16px] hover:text-blue-500 md:hidden"
           >
             Register
           </Link>
+          }
+         </div>
         </div>
 
         {/* Signup Button and Hamburger Icon */}
         <div className="flex items-center space-x-4">
-          <div>
+          <div className=" hidden md:block">
             <Auth />
           </div>
           <button

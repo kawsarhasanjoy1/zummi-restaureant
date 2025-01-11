@@ -29,12 +29,14 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.orders]
     }),
     deleteUserOrder: build.mutation({
       query: (id) => ({
         url: `/delete-user-order/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [tagTypes.orders]
     }),
     deleteOrder: build.mutation({
       query: (id) => ({

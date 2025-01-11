@@ -19,6 +19,7 @@ const reviewApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.review]
     }),
     getUserReview: build.query({
       query: ({id,filters}) => {
@@ -28,6 +29,7 @@ const reviewApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.review]
     }),
     deleteReview: build.mutation({
       query: (id) => ({

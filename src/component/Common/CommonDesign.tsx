@@ -9,7 +9,7 @@ const CommonDesign = ({children}: {children: ReactNode}) => {
           alt=""
           src={"	https://html.rrdevs.net/zummi/assets/imgs/section-title/banner-left.svg".trim()}
         />
-        <h4 className=" bg-[#4d4145] py-1 uppercase font-semibold">
+        <h4 className=" bg-[#4d4145] py-1 uppercase font-semibold px-2">
           {children}
         </h4>
         <Image

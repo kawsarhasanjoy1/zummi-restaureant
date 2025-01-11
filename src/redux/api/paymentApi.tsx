@@ -21,6 +21,7 @@ const paymentApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: [tagTypes.payments]
     }),
   }),
 });
