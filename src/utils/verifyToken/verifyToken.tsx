@@ -1,4 +1,4 @@
 import { jwtDecode } from "jwt-decode";
 export const verifyToken = (token: string) => {
-  return jwtDecode(token);
+  return jwtDecode(token ? token : ("" as string));
 };

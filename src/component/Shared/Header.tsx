@@ -1,13 +1,11 @@
 "use client";
-import { authKey } from "@/constance/authKey";
-import { USER_ROLE } from "@/constance/constance";
-import { getTokenFromLocalStorage } from "@/service/action/getTokenFromLocalStorage";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import dynamic from "next/dynamic";
+import { useAppSelector } from "@/redux/hook";
 
 const Header = () => {
   const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
@@ -15,9 +13,9 @@ const Header = () => {
 
   // Memoized dynamic import
   const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
-
-  const token = getTokenFromLocalStorage(authKey);
-  token;
+  const {user} = useAppSelector(store => store.auth)
+ 
+  const role = user?.role;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -87,7 +85,7 @@ const Header = () => {
             Checkout
           </Link>
           <Link
-            href={`/dashboard/${USER_ROLE.superAdmin || "user"}`}
+            href={`/dashboard/${role}`}
             className="block px-4 py-2 text-[16px] hover:text-blue-500"
           >
             Dashboard

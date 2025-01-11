@@ -130,7 +130,7 @@ const SideBarItem = (role: UserRole) => {
           path: `/${role}/payments`,
           icon: MdOutlinePayment,
         }
-      )
+      );
       break;
     case USER_ROLE.chef:
       roleMenu.push(
@@ -168,7 +168,7 @@ const SideBarItem = (role: UserRole) => {
         }
       );
       break;
-    case USER_ROLE.chef:
+    case USER_ROLE.user:
       roleMenu.push(
         {
           title: "Dashboard",
@@ -188,7 +188,7 @@ const SideBarItem = (role: UserRole) => {
         },
         {
           title: "Payment-history",
-          path: `/${role}/history`,
+          path: `/${role}/payments`,
           icon: MdReviews,
         }
       );

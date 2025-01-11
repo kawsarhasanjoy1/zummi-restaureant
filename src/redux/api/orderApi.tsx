@@ -9,7 +9,7 @@ const orderApi = baseApi.injectEndpoints({
         method: "POST",
         data: data,
       }),
-      invalidatesTags: [tagTypes.orders]
+      invalidatesTags: [tagTypes.orders],
     }),
     fetchOrder: build.query({
       query: (filters) => {
@@ -19,13 +19,16 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.orders]
+      providesTags: [tagTypes.orders],
     }),
     fetchUserOrder: build.query({
-      query: (id) => ({
-        url: `/get-user-order/${id}`,
-        method: "GET",
-      }),
+      query: ({ id, filters }) => {
+        const query = new URLSearchParams(filters).toString();
+        return {
+          url: `/get-user-order/${id}?${query}`,
+          method: "GET",
+        };
+      },
     }),
     deleteUserOrder: build.mutation({
       query: (id) => ({
@@ -38,7 +41,7 @@ const orderApi = baseApi.injectEndpoints({
         url: `/delete-order/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: [tagTypes.orders]
+      invalidatesTags: [tagTypes.orders],
     }),
   }),
 });

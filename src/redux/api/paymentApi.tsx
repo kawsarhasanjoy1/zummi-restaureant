@@ -3,7 +3,6 @@ import { baseApi } from "./baseApi";
 
 const paymentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-  
     fetchPayment: build.query({
       query: (filters) => {
         const query = new URLSearchParams(filters).toString();
@@ -12,19 +11,18 @@ const paymentApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.payments]
+      providesTags: [tagTypes.payments],
     }),
     fetchUserPayment: build.query({
-      query: (id) => ({
-        url: `/get-payment/${id}`,
-        method: "GET",
-      }),
+      query: ({ id, filters }) => {
+        const query = new URLSearchParams(filters);
+        return {
+          url: `/get-payment/${id}?${query}`,
+          method: "GET",
+        };
+      },
     }),
-    
   }),
 });
 
-export const {
-useFetchPaymentQuery,
-useFetchUserPaymentQuery
-} = paymentApi;
+export const { useFetchPaymentQuery, useFetchUserPaymentQuery } = paymentApi;

@@ -2,15 +2,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome } from "react-icons/fa";
 import Image from "next/image";
 import SideBarItem from "@/utils/SideBarItem/SideBarItem";
-import { USER_ROLE } from "@/constance/constance";
+import { useAppSelector } from "@/redux/hook";
 const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
 
 const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-
+  const {user} = useAppSelector(store => store.auth)
+   
+    const role = user?.role;
   return (
     <div className="relative">
       <div
@@ -54,9 +56,13 @@ const Sidebar = () => {
 
         {/* Navigation Links */}
 
-        {SideBarItem(USER_ROLE.superAdmin)?.map((Item) => {
+        {SideBarItem(role)?.map((Item) => {
           return (
-            <Link key={Item?.path} href={`/dashboard/${Item?.path}`} className="block ">
+            <Link
+              key={Item?.path}
+              href={`/dashboard/${Item?.path}`}
+              className="block "
+            >
               <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
                 <Item.icon />
                 <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -77,19 +83,12 @@ const Sidebar = () => {
         </Link> */}
         <div className="my-4 bg-gray-600 h-[1px]"></div>
         <Link href="/" className="block">
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">
-              Home
-            </span>
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-3 duration-300 cursor-pointer hover:bg-blue-600 text-white gap-2">
+          <FaHome />
+            <span className="text-[15px] text-gray-200 font-bold flex justify-center items-center">Home</span>
           </div>
         </Link>
-        <Link href="/logout" className="block">
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">
-              Logout
-            </span>
-          </div>
-        </Link>
+      
       </div>
     </div>
   );

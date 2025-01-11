@@ -2,19 +2,12 @@ import { useDeleteOrderMutation } from "@/redux/api/orderApi";
 import { formatDate } from "@/utils/FormateDate/FormateDate";
 import React from "react";
 import { RiDeleteBin2Fill } from "react-icons/ri";
-import { toast } from "react-toastify";
 
-const PaymentTable = ({ payment }: { payment: Record<string, any> }) => {
-  const [deleteOrder] = useDeleteOrderMutation();
+
+const PaymentUserTable = ({ payment }: { payment: Record<string, any> }) => {
+  
   const HandleToDelete = async (e) => {
-    try {
-      const res = await deleteOrder(e).unwrap();
-      if (res) {
-        toast.success(res?.message);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+   console.log(e)
   };
 
   return (
@@ -57,4 +50,4 @@ const PaymentTable = ({ payment }: { payment: Record<string, any> }) => {
   );
 };
 
-export default PaymentTable;
+export default PaymentUserTable;

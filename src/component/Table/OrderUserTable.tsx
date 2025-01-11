@@ -1,22 +1,10 @@
-import { useDeleteOrderMutation } from "@/redux/api/orderApi";
 import { formatDate } from "@/utils/FormateDate/FormateDate";
 import Image from "next/image";
 import React from "react";
-import { RiDeleteBin2Fill } from "react-icons/ri";
-import { toast } from "react-toastify";
 
-const OrderUserTable = ({ order }: { order: Record<string, any> }) => {
-  const [deleteOrder] = useDeleteOrderMutation();
-  const HandleToDelete = async (e) => {
-    try {
-      const res = await deleteOrder(e).unwrap();
-      if (res) {
-        toast.success(res?.message);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
+const OrderTable = ({ order }: { order: Record<string, any> }) => {
+ 
 
   return (
     <tr>
@@ -71,15 +59,9 @@ const OrderUserTable = ({ order }: { order: Record<string, any> }) => {
         )}
       </td>
 
-      <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-        <RiDeleteBin2Fill
-          className=" cursor-pointer"
-          onClick={() => HandleToDelete(order?._id)}
-          size={20}
-        />
-      </td>
+    
     </tr>
   );
 };
 
-export default OrderUserTable;
+export default OrderTable;
