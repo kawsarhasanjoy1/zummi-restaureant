@@ -43,6 +43,13 @@ const userApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
+    fetchAdmin: build.query({
+      query: () => ({
+        url: `/fetch-admin`,
+        method: "GET",
+      }),
+      providesTags: [tagTypes.user],
+    }),
     deleteUser: build.mutation({
       query: (id) => {
         return {
@@ -62,4 +69,5 @@ export const {
   useFetchAllUserQuery,
   useDeleteUserMutation,
   useGetAllUserQuery,
+  useFetchAdminQuery
 } = userApi;

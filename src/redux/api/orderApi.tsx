@@ -31,6 +31,15 @@ const orderApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.orders]
     }),
+    getAdminStats: build.query({
+      query: () => {
+        return {
+          url: `/get-admin-stats`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.orders]
+    }),
     deleteUserOrder: build.mutation({
       query: (id) => ({
         url: `/delete-user-order/${id}`,
@@ -54,4 +63,5 @@ export const {
   useDeleteOrderMutation,
   useDeleteUserOrderMutation,
   useFetchUserOrderQuery,
+  useGetAdminStatsQuery,
 } = orderApi;

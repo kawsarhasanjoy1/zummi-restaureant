@@ -24,7 +24,6 @@ const page = () => {
     id,
     filters,
   });
-  console.log(data);
   if (isLoading) {
     return <LoadingSpinner />;
   }
