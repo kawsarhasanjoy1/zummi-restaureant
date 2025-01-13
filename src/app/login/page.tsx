@@ -19,7 +19,7 @@ const page = () => {
   const [loginUser] = useLoginUserMutation();
 
   const HandleToLogin = async (values: FieldValues) => {
-    console.log(values)
+    
     try {
       const res: any = await loginUser(values).unwrap();
       const token = res?.data?.token;

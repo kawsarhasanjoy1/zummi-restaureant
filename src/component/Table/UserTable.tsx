@@ -26,6 +26,7 @@ const UserTable = ({
     const id = user?._id;
     if (user?.role !== "chef" || user?.role !== "superAdmin") {
       const res = await updateRole({ id, role });
+      
       if (res?.data?.success) {
         toast.success("user role updated successful");
         refetch();

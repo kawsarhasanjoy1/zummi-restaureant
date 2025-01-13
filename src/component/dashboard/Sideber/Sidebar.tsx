@@ -14,7 +14,7 @@ const Sidebar = () => {
    
     const role = user?.role;
   return (
-    <div className="relative">
+    <div className="relative z-50">
       <div
         className="fixed text-white text-4xl top-2 left-2 cursor-pointer bg-gray-700 p-3 rounded-md"
         onClick={() => setSidebarOpen(!isSidebarOpen)}

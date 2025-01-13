@@ -1,10 +1,10 @@
+import ChefHome from "@/component/dashboard/DashboardHome/ChefHome/ChefHome";
 import React from "react";
 
 const page = () => {
   return (
-    <div>
-      <p className=" text-xl">Hi! Md Kawsar</p>
-      <p className=" text-md">Welcome to our Restaurant</p>
+    <div className=" z-[-10]">
+      <ChefHome />
     </div>
   );
 };

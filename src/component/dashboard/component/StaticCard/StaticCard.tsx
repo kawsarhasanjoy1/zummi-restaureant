@@ -97,7 +97,7 @@ const StaticCard = () => {
             <p className="text-2xl">
               {stats?.data?.totalPrice ? stats?.data?.totalPrice : 0}
             </p>
-            <p>Ravenew</p>
+            <p>Revenue</p>
           </div>
         </div>
 

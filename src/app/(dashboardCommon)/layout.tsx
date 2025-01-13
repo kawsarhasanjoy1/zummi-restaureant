@@ -7,7 +7,7 @@ const layout = ({ children }: { children: ReactNode }) => {
       <div className=" col-span-3">
         <Sidebar />
       </div>
-      <div className=" col-span-9 pt-16">
+      <div className=" col-span-9 pt-16 z-[-10px]">
         {children}
       </div>
     </div>

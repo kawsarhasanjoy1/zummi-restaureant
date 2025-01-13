@@ -1,24 +1,17 @@
 "use client";
-import LoadingSpinner from "@/app/loading";
+import React, { useState } from "react";
+import StaticCardUser from "../../component/StaticCard/StaticCardUser";
+import UserChart from "../../component/Chart/UserChart";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
-import Pagination from "@/QueryBuilders/Pagination";
+import LoadingSpinner from "@/app/loading";
 import { useFetchOrderQuery } from "@/redux/api/orderApi";
-import React, {  useState } from "react";
-import SuperAdminTable from "../../HomeTable/SuperAdminTable";
-import StaticCard from "../../component/StaticCard/StaticCard";
-import Chart from "../../component/Chart/Chart";
-import { useGetActivityQuery } from "@/redux/api/recentActivity";
-import LastActiveUser from "../LastActiveUser/LastActiveUser";
+import { useAppSelector } from "@/redux/hook";
+import Pagination from "@/QueryBuilders/Pagination";
+import UserHomeTable from "../../HomeTable/UserHomeTable";
+import ChefStaticCard from "../../component/StaticCard/ChefStaticCard";
+import ChefChart from "../../component/Chart/ChefChart";
 
-const SuperAdminHome = () => {
-  const { data: activity } = useGetActivityQuery(undefined);
-
-  const [isDark, setIsDark] = useState(false);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
-
+const ChefHome = () => {
   const [filters, setFilters] = useState({
     page: 1,
     limit: 8,
@@ -26,9 +19,10 @@ const SuperAdminHome = () => {
     sort: "-createdAt",
     // name: "",
   });
-
+  const { user } = useAppSelector((store) => store.auth);
+  const id = user?.id;
   const { error, data, refetch, isLoading } = useFetchOrderQuery(filters);
-
+ 
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -46,21 +40,21 @@ const SuperAdminHome = () => {
   const handlePageChange = (newPage: number) => {
     handleFilterChange({ page: newPage });
   };
-
   return (
-    <div className={isDark ? "dark" : ""}>
+    <div className=" ">
       <div>
-        <StaticCard />
+        <ChefStaticCard />
       </div>
       <div className="p-4">
         <h2 className="text-lg font-medium mb-4">Order overview</h2>
-        <Chart />
+        <ChefChart />
       </div>
       <div>
         <div>
           {data?.data?.result?.length ? (
             <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
               <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+                <p className=" text-xl text-black py-4">Order list</p>
                 <div>
                   <input
                     onChange={handleToSearch}
@@ -74,16 +68,20 @@ const SuperAdminHome = () => {
                 <table className="min-w-auto">
                   <thead>
                     <tr>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Products
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-blue-500 tracking-wider">
+                        Image
                       </th>
+
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Name
+                        ProductName
+                      </th>
+
+                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                        TranId
                       </th>
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                         Quantity
                       </th>
-
                       <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                         Amount
                       </th>
@@ -98,7 +96,7 @@ const SuperAdminHome = () => {
                   </thead>
                   <tbody className="bg-white">
                     {data?.data?.result?.map((order) => (
-                      <SuperAdminTable key={order?._id} order={order} />
+                      <UserHomeTable key={order?._id} order={order} />
                     ))}
                   </tbody>
                 </table>
@@ -111,34 +109,6 @@ const SuperAdminHome = () => {
                   )}
                 </div>
               </div>
-              <div className=" w-full mt-10 bg-gray-200">
-              <p className=" text-2xl text-black py-4 px-4 ">Recent active user</p>
-                <table className=" w-full  bg-gray-200">
-                  <thead>
-                    <tr>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Image
-                      </th>
-
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Name
-                      </th>
-
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Role
-                      </th>
-                      <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="">
-                    {activity?.data?.map((activeUser) => (
-                      <LastActiveUser key={activeUser?._id} user={activeUser} />
-                    ))}
-                  </tbody>
-                </table>
-              </div>
             </div>
           ) : (
             <EmptyCard />
@@ -149,4 +119,4 @@ const SuperAdminHome = () => {
   );
 };
 
-export default SuperAdminHome;
+export default ChefHome;

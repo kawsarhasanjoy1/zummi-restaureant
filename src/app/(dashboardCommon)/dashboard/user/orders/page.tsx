@@ -1,8 +1,7 @@
 "use client";
 import LoadingSpinner from "@/app/loading";
 import EmptyCard from "@/component/EmptyCard/EmptyCard";
-import OrderUserTable from "@/component/Table/OrderTable";
-import OrderTable from "@/component/Table/OrderTable";
+import OrderUserTable from "@/component/Table/OrderUserTable";
 import Pagination from "@/QueryBuilders/Pagination";
 import { useFetchUserOrderQuery } from "@/redux/api/orderApi";
 import { useAppSelector } from "@/redux/hook";
@@ -22,7 +21,7 @@ const page = () => {
     id,
     filters,
   });
-  console.log(data)
+ 
   if (isLoading) {
     return <LoadingSpinner />;
   }

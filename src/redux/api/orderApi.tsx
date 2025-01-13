@@ -29,7 +29,25 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.orders]
+      providesTags: [tagTypes.orders],
+    }),
+    getUserStats: build.query({
+      query: (id) => {
+        return {
+          url: `/get-user-stats/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.orders],
+    }),
+    getChefStats: build.query({
+      query: () => {
+        return {
+          url: `/get-chef-stats`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.orders],
     }),
     getAdminStats: build.query({
       query: () => {
@@ -38,14 +56,14 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      providesTags: [tagTypes.orders]
+      providesTags: [tagTypes.orders],
     }),
     deleteUserOrder: build.mutation({
       query: (id) => ({
         url: `/delete-user-order/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: [tagTypes.orders]
+      invalidatesTags: [tagTypes.orders],
     }),
     deleteOrder: build.mutation({
       query: (id) => ({
@@ -64,4 +82,6 @@ export const {
   useDeleteUserOrderMutation,
   useFetchUserOrderQuery,
   useGetAdminStatsQuery,
+  useGetUserStatsQuery,
+  useGetChefStatsQuery,
 } = orderApi;
