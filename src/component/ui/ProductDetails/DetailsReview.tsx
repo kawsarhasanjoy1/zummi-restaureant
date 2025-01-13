@@ -5,7 +5,7 @@ import { formatDate } from "@/utils/FormateDate/FormateDate";
 import { useGetAllUserQuery } from "@/redux/api/userApi";
 
 const DetailsReview = ({ product }: { product: any }) => {
-  const { data } = useGetAllUserQuery(undefined);
+  const { data, refetch } = useGetAllUserQuery(undefined);
   const userInfo = product?.reviews?.flatMap((item: any) => {
     // Filter the user based on the userId
     const userFilter: any = data?.data?.filter(
@@ -22,12 +22,11 @@ const DetailsReview = ({ product }: { product: any }) => {
       };
     });
   });
-  
+
   return (
     <section className=" py-10 md:py-0 relative">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
         <div className="w-full">
-        
           <div className=" gap-11 pb-11 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
             <div className="p-10 bg-amber-50 rounded-3xl flex items-center justify-center flex-col">
               <h2 className="font-manrope font-bold text-5xl text-amber-400 mb-6">
@@ -47,7 +46,7 @@ const DetailsReview = ({ product }: { product: any }) => {
           </div>
 
           <div>
-            {userInfo?.map((user,index) => {
+            {userInfo?.map((user, index) => {
               return (
                 <div
                   key={index}
@@ -56,7 +55,11 @@ const DetailsReview = ({ product }: { product: any }) => {
                   <div className="flex  flex-col min-[400px]:flex-row justify-between gap-5 mb-4">
                     <div className="flex items-center gap-3">
                       <Image
-                        src={user?.user?.image ? user?.user?.image : 'https://i.ibb.co.com/WsrL60p/20240905-143900.jpg'}
+                        src={
+                          user?.user?.image
+                            ? user?.user?.image
+                            : "https://i.ibb.co.com/WsrL60p/20240905-143900.jpg"
+                        }
                         alt="John image"
                         width={400}
                         height={400}
@@ -78,7 +81,9 @@ const DetailsReview = ({ product }: { product: any }) => {
                         return (
                           <div key={review?._id}>
                             {formatDate(
-                              review?.createdAt ? review?.createdAt : "2025-01-05T01:55:48.788Z"
+                              review?.createdAt
+                                ? review?.createdAt
+                                : "2025-01-05T01:55:48.788Z"
                             )}
                           </div>
                         );

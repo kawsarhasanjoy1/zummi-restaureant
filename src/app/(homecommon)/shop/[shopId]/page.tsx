@@ -6,13 +6,13 @@ import { use } from "react";
 
 const page = ({ params }: { params: any }) => {
   const productId = use<any>(params).shopId;
-  const { data, isLoading } = useGetProductQuery(productId);
+  const { data, isLoading,refetch } = useGetProductQuery(productId);
   if (isLoading) {
     <LoadingSpinner />;
   }
   return (
     <div>
-      <ProductDetails product={data?.data} />
+      <ProductDetails  product={data?.data} refetch={refetch} />
     </div>
   );
 };

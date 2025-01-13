@@ -16,7 +16,6 @@ const page = () => {
   });
 
   const { error, data, refetch, isLoading } = useGetReviewQuery(filters);
-  console.log(data);
   if (isLoading) {
     return <LoadingSpinner />;
   }

@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { addToOrder } from "@/redux/api/features/orderSlice";
 import { toast } from "react-toastify";
 
-const ProductDetails = ({ product }: { product: TProduct }) => {
+const ProductDetails = ({ product,refetch }: { product: TProduct,refetch?: any }) => {
   const [activeTab, setActiveTab] = useState("description");
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((store) => store?.auth);
@@ -199,7 +199,7 @@ const ProductDetails = ({ product }: { product: TProduct }) => {
               </h2>
               <div className=" grid grid-cols-1 md:grid-cols-2">
                 <div className=" h-[500px]">
-                  <ReviewForm product={product} />
+                  <ReviewForm refetch={refetch} product={product} />
                 </div>
                 <div>
                   <DetailsReview product={product} />

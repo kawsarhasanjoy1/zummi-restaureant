@@ -6,7 +6,7 @@ import { Rating } from "@smastrom/react-rating";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const ReviewForm = ({ product }) => {
+const ReviewForm = ({ product,refetch }:any ) => {
   const [rating, setRating] = useState(4.5);
   const { user } = useAppSelector((store) => store.auth);
   const [createReview] = useCreateReviewMutation();
@@ -23,6 +23,7 @@ const ReviewForm = ({ product }) => {
       const res = await createReview(reviewField).unwrap();
       if (res) {
         toast.success(res?.message);
+        refetch()
       }
     } catch (err:any) {
       toast.error(err?.data?.message)

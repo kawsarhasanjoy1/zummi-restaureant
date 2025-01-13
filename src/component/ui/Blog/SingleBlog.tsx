@@ -10,7 +10,7 @@ import { formatDate } from "@/utils/FormateDate/FormateDate";
 
 
 const SingleBlog = ({ blog }: { blog: any }) => {
-  const { data: blogData, isLoading, isError } = useFetchBlogQuery(undefined);
+  const { data: blogData, isLoading, isError, refetch } = useFetchBlogQuery(undefined);
 
   return (
     <div className="px-2">
