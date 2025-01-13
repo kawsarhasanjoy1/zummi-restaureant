@@ -54,7 +54,7 @@ const SuperAdminHome = () => {
         <StaticCard />
       </div>
       <div className="p-4">
-        <h2 className="text-lg font-medium mb-4">Overview Chart</h2>
+        <h2 className="text-lg font-medium mb-4">Order overview</h2>
         <Chart />
       </div>
       <div>
@@ -113,6 +113,7 @@ const SuperAdminHome = () => {
                 </div>
               </div>
               <table className=" w-full mt-10 bg-gray-200">
+                <p className=" text-2xl">Recent active user</p>
                 <thead>
                   <tr>
                     <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">

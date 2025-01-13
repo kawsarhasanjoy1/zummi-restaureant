@@ -1,4 +1,4 @@
-import { useDeleteUserMutation } from "@/redux/api/userApi";
+import { useDeleteUserMutation, useUpRoleMutation } from "@/redux/api/userApi";
 import { formatDate } from "@/utils/FormateDate/FormateDate";
 import Image from "next/image";
 import React from "react";
@@ -15,9 +15,23 @@ const UserTable = ({
   const [deleteUser] = useDeleteUserMutation();
   const HandleToDelete = async (e) => {
     const res = await deleteUser(e).unwrap();
-    (res);
+    res;
     if (res?.success) {
       toast.success(res?.message);
+    }
+  };
+  const [updateRole] = useUpRoleMutation();
+  const HandleToAdmin = async (user) => {
+    const role = user?.role == "user" ? "admin" : "user";
+    const id = user?._id;
+    if (user?.role !== "chef" || user?.role !== "superAdmin") {
+      const res = await updateRole({ id, role });
+      if (res?.data?.success) {
+        toast.success("user role updated successful");
+        refetch();
+      }
+    } else {
+      toast.error("this role will be only create");
     }
   };
 
@@ -47,7 +61,16 @@ const UserTable = ({
         {formatDate(user?.createdAt)}
       </td>
       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-        <p className={`border flex justify-center items-center ${user?.role == 'user' ? 'bg-red-200 opacity-80 text-black rounded-full': 'bg-green-200 opacity-80 text-black rounded-full'}`}>{user?.role}</p>
+        <button
+          onClick={() => HandleToAdmin(user)}
+          className={`border flex justify-center items-center px-4 ${
+            user?.role == "user"
+              ? "bg-red-200 opacity-80 text-black rounded-full"
+              : "bg-green-200 opacity-80 text-black rounded-full"
+          }`}
+        >
+          {user?.role}
+        </button>
       </td>
 
       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">

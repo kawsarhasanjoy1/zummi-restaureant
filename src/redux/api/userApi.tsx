@@ -9,7 +9,7 @@ const userApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: [tagTypes.user]
+      invalidatesTags: [tagTypes.user],
     }),
     loginUser: build.mutation({
       query: (data) => ({
@@ -22,9 +22,9 @@ const userApi = baseApi.injectEndpoints({
       query: ({ id, role }) => ({
         url: `/update-role/${id}`,
         method: "POST",
-        body: role,
+        data: { role },
       }),
-      invalidatesTags: [tagTypes.user]
+      invalidatesTags: [tagTypes.user],
     }),
     fetchAllUser: build.query({
       query: (filters) => {
@@ -69,5 +69,5 @@ export const {
   useFetchAllUserQuery,
   useDeleteUserMutation,
   useGetAllUserQuery,
-  useFetchAdminQuery
+  useFetchAdminQuery,
 } = userApi;
