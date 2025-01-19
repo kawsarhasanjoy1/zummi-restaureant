@@ -21,7 +21,7 @@ const Chef = () => {
     <LoadingSpinner/>
   }
   return (
-    <div className=" pt-48">
+    <div className=" pt-20">
       <div className=" flex flex-col justify-center items-center space-y-4 mb-14">
         <CommonDesign>Expert chef</CommonDesign>
         <p className=" md:text-4xl uppercase text-2xl">MEET OUR EXPERT CHEFS</p>

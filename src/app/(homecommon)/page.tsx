@@ -15,7 +15,7 @@ export default function Home() {
         <ProductAbout />
       </div>
       <FoodMenu />
-      <div className=" mt-36">
+      <div className="">
         <Chef />
       </div>
       <BlogHome />

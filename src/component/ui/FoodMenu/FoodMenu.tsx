@@ -16,11 +16,11 @@ const FoodMenu = () => {
   }
   return (
     <div className=" pt-32 mb-20">
-      <div className=" flex flex-col justify-center items-center space-y-3">
+      <div className=" flex flex-col justify-center items-center space-y-5">
         <CommonDesign>From Our Menu</CommonDesign>
         <p className=" md:text-4xl text-2xl uppercase">Our Special Offers</p>
       </div>
-      <div className=" md:px-24 px-2 rounded shadow">
+      <div className=" md:px-24 px-2 rounded shadow mt-3">
         <div className="flex border-b border-gray-400 justify-center text-white items-center md:gap-3 md:text-sm text-[10px] font-semibold mb-20">
           <SelectButton
             tab="morning"

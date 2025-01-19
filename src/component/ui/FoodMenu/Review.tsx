@@ -1,80 +1,25 @@
+import { useGetReviewQuery } from "@/redux/api/reviewApi";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Review = () => {
-  const array = [
-    {
-      name: "John Doe",
-      designation: "Student",
-      testimonialDescription:
-        "Being a student, Taskiee has been my go-to tool for organizing assignments and study schedules. The visual timeline and reminder features have helped me stay on top of my coursework",
-      keyWord: "Child",
-    },
-    {
-      name: "Jane Doe",
-      designation: "Freelancer",
-      testimonialDescription:
-        "Taskiee has been a game-changer for my freelance work. It allows me to effortlessly prioritize tasks, set realistic deadlines, and maintain a healthy work-life balance",
-      keyWord: "Gentlewoman",
-    },
-    {
-      name: "Shiyam Sarker",
-      designation: "Entrepreneur",
-      testimonialDescription:
-        "Taskiee's collaborative features have been instrumental in streamlining tasks for my startup. The ability to share projects and track progress with the team has enhanced our efficiency.",
-      keyWord: "Gentleman",
-    },
-    {
-      name: "Bob Smith",
-      designation: "Creative Professional",
-      testimonialDescription:
-        "As a creative professional, Taskiee has simplified my project management. The clean design and goal tracking feature keep me inspired and organized throughout the creative process.",
-      keyWord: "Child",
-    },
-    {
-      name: "Eva Williams",
-      designation: "Remote Worker",
-      testimonialDescription:
-        "Taskiee's mobile app has made remote work a breeze for me. I can seamlessly manage tasks on the go, ensuring that I stay productive regardless of my location.",
-      keyWord: "Individual",
-    },
-    {
-      name: "Chris Brown",
-      designation: "Parent",
-      testimonialDescription:
-        "Managing family schedules is no easy task, but Taskiee has made it seamless. From school activities to household chores, Taskiee keeps our family organized and on track.",
-      keyWord: "Boy",
-    },
-    {
-      name: "Olivia Davis",
-      designation: "Health Professional",
-      testimonialDescription:
-        "In the healthcare field, where time is crucial, Taskiee has become my ally. Its time tracking feature has allowed me to optimize patient care and manage administrative tasks efficiently.",
-      keyWord: "Girl",
-    },
-    {
-      name: "Liam Wilson",
-      designation: "Researcher",
-      testimonialDescription:
-        "Taskiee's analytics feature has proven invaluable in my research endeavors. It provides insightful data on my productivity patterns, helping me refine my workflow and achieve research goals",
-      keyWord: "Toddler",
-    },
-  ];
+  const { data } = useGetReviewQuery({ limit: 10, sort: "-rating" });
+  const arrays = data?.data?.result;
 
   const [currentSlider, setCurrentSlider] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false); // State to track screen size
 
   const prevSlider = useCallback(() => {
     setCurrentSlider((currentSlider) =>
-      currentSlider === 0 ? array.length - 1 : currentSlider - 1
+      currentSlider === 0 ? arrays?.length - 1 : currentSlider - 1
     );
-  }, [array.length]);
+  }, [arrays?.length]);
 
   const nextSlider = useCallback(() => {
     setCurrentSlider((currentSlider) =>
-      currentSlider === array.length - 1 ? 0 : currentSlider + 1
+      currentSlider === arrays?.length - 1 ? 0 : currentSlider + 1
     );
-  }, [array.length]);
+  }, [arrays?.length]);
 
   // Auto-slider effect
   useEffect(() => {
@@ -169,7 +114,7 @@ const Review = () => {
         }}
       >
         {/* sliders */}
-        {array.map((each, idx) => (
+        {arrays?.map((each, idx) => (
           <div key={idx} className="p-4 min-w-full">
             <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
               <svg
@@ -180,24 +125,20 @@ const Review = () => {
               >
                 <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
               </svg>
-              <p className="leading-relaxed mb-6 text-white">
-                {each?.testimonialDescription}
-              </p>
+              <p className="leading-relaxed mb-6 text-white">{each?.review}</p>
               <a className="inline-flex items-center">
                 <Image
                   height={50}
                   width={50}
                   className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                  src={`https://source.unsplash.com/200x200/?${each.keyWord}`}
+                  src={each?.user?.image}
                   alt="carousel navigate ui"
                 />
                 <span className="flex-grow flex flex-col pl-4">
                   <span className="title-font font-medium text-white">
-                    {each.name}
+                    {each?.user?.name}
                   </span>
-                  <span className="text-white text-sm">
-                    {each?.designation}
-                  </span>
+                  <span className="text-white text-sm">{each?.user?.role}</span>
                 </span>
               </a>
             </div>

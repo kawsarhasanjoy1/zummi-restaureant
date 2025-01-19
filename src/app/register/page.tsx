@@ -23,7 +23,7 @@ const page = () => {
 
         if (res?.data?.success) {
           toast.success(res?.data?.message);
-          router.push("/");
+          router.push("/login");
         } else {
           toast.error(res?.error?.data?.message);
         }
