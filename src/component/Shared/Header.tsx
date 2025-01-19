@@ -13,8 +13,8 @@ const Header = () => {
 
   // Memoized dynamic import
   const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
-  const {user} = useAppSelector(store => store.auth)
- 
+  const { user } = useAppSelector((store) => store.auth);
+
   const role = user?.role;
 
   const toggleMenu = () => {
@@ -44,62 +44,70 @@ const Header = () => {
         >
           <Link
             href="/"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             About Us
           </Link>
           <Link
             href="/menu"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Food Menu
           </Link>
           <Link
             href="/shop"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Shop
           </Link>
           <Link
             href="/chef"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Chef
           </Link>
           <Link
             href="/blog"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Blog
           </Link>
           <Link
             href="/checkout"
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
+            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
           >
             Checkout
           </Link>
-          <Link
-            href={`/dashboard/${role}`}
-            className="block px-4 py-2 text-[16px] hover:text-blue-500"
-          >
-            Dashboard
-          </Link>
-         <div>
-          {
-            user ? <div className="md:hidden block px-4 py-2 text-[16px] hover:text-blue-500"><Auth /></div> :  <Link
-            href={`/register`}
-            className="block px-4 py-2 text-[16px] hover:text-blue-500 md:hidden"
-          >
-            Register
-          </Link>
-          }
-         </div>
+          {user ? (
+            <Link
+              href={`/dashboard/${role}`}
+              className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            ""
+          )}
+          <div>
+            {user ? (
+              <div className="md:hidden block px-4 py-2 text-[14px] duration-300 hover:text-blue-500">
+                <Auth />
+              </div>
+            ) : (
+              <Link
+                href={`/register`}
+                className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500 md:hidden"
+              >
+                Register
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Signup Button and Hamburger Icon */}
