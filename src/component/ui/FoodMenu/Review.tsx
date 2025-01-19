@@ -55,7 +55,7 @@ const Review = () => {
         {/* arrow left */}
         <button
           onClick={prevSlider}
-          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 rounded-full w-6 h-6 md:w-8 md:h-8"
+          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 rounded-full w-6 h-6 md:w-8 md:h-8 text-white"
         >
           <svg
             viewBox="0 0 1024 1024"
@@ -80,7 +80,7 @@ const Review = () => {
         {/* arrow right */}
         <button
           onClick={nextSlider}
-          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 duration-300 rounded-full w-6 h-6 md:w-8 md:h-8"
+          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 duration-300 rounded-full w-6 h-6 md:w-8 md:h-8 text-white"
         >
           <svg
             viewBox="0 0 1024 1024"
@@ -115,7 +115,7 @@ const Review = () => {
       >
         {/* sliders */}
         {arrays?.map((each, idx) => (
-          <div key={idx} className="p-4 min-w-full">
+          <div key={idx} className="p-4 min-w-full mt-16 md:mt-0">
             <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

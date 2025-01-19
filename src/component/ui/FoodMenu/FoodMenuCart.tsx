@@ -8,7 +8,7 @@ const FoodMenuCart = ({ menu }: { menu: TProduct }) => {
     <div className=" flex justify-center items-center gap-4">
       <div>
         <Image
-          className=" rounded-full md:w-28 md:h-28 w-16 h-16"
+          className=" rounded-full md:w-28 md:h-28 w-14 h-14 object-cover"
           src={menu?.image}
           height={500}
           width={500}
@@ -17,7 +17,7 @@ const FoodMenuCart = ({ menu }: { menu: TProduct }) => {
         />
       </div>
       <div className="">
-        <p className=" uppercase text-xl">
+        <p className=" uppercase text-[20px]">
           {" "}
           <Link
             className=" hover:text-yellow-600 duration-500"
@@ -26,7 +26,7 @@ const FoodMenuCart = ({ menu }: { menu: TProduct }) => {
             {menu?.name}
           </Link>
         </p>
-        <p>{menu?.description.slice(0, 46)}</p>
+        <p>{menu?.description.slice(0, 40)}</p>
       </div>
       <div>
         <p className=" text-yellow-500">${menu?.price}</p>

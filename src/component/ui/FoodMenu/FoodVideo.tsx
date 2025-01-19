@@ -52,7 +52,7 @@ const FoodVideo = () => {
         </div>
       
         <div className=" mb-48 md:mb-0">
-          <div className="max-w-[50%] min-w-[350px]  mx-auto h-[270px] flex flex-row items-center overflow-hidden  absolute -bottom-20 md:bottom-0 md:right-0 right-[4%]">
+          <div className="max-w-[50%] min-w-[350px]  mx-auto h-full flex flex-row items-center overflow-hidden  absolute -bottom-20 md:-bottom-44 md:right-0 right-[4%]">
            <Review/>
           </div>
         </div>

@@ -20,12 +20,12 @@ const Banner = () => {
           alt="Banner"
         />
       </div>
-      <div className="md:px-20 px-3 md:space-y-5 space-y-4 absolute md:top-[30%] top-[22%]">
+      <div className="md:px-20 px-3 md:space-y-5 space-y-4 absolute md:top-[30%] top-[20%]">
       <div>
         <CommonDesign> Traditional & Hygiene</CommonDesign>
       </div>
         <div>
-          <p className=" md:text-8xl text-3xl font-bold uppercase font-sans">
+          <p className=" md:text-8xl text-2xl font-bold uppercase font-sans">
             <span>For the</span>
             <span className=" text-yellow-500 ml-8">enjoyment</span>{" "}
             <span>of scrumptious fare.</span>
