@@ -28,7 +28,7 @@ const FoodVideo = () => {
         <div className=" absolute top-[30%] md:left-[20%] left-4 z-30 flex justify-center items-center">
           {active ? (
             <iframe
-            className=" md:w-[560px] w-[350px] md:h-[315px] h-auto"
+            className=" md:w-[1500px] w-[350px] md:h-[315px] h-auto"
               
               src="https://www.youtube.com/embed/VexEx0jy6tY?si=4-EpEcDEToa9OY00"
               title="YouTube video player"

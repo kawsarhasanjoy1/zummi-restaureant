@@ -1,9 +1,10 @@
 import React, { ReactNode } from "react";
 
-const Button = ({ children, className }: { children: ReactNode, className?: string }) => {
+const Button = ({ children, className, ...props }: { children: ReactNode, className?: string,props: any }) => {
   return (
     <div>
       <button
+        {...props}
         className={`text-md text-[15px]  font-semibold uppercase ${className ? className : 'w-60'}  ${className ? 'h-11' : 'h-14'} bg-red-500 text-white relative overflow-hidden group z-10 hover:text-white duration-1000 $`}
       >
         <span

@@ -1,148 +1,111 @@
+"use client";
 import { useGetReviewQuery } from "@/redux/api/reviewApi";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const Review = () => {
   const { data } = useGetReviewQuery({ limit: 10, sort: "-rating" });
-  const arrays = data?.data?.result;
+  const reviews = data?.data?.result || [];
 
-  const [currentSlider, setCurrentSlider] = useState(0);
-  const [isSmallScreen, setIsSmallScreen] = useState(false); // State to track screen size
-
-  const prevSlider = useCallback(() => {
-    setCurrentSlider((currentSlider) =>
-      currentSlider === 0 ? arrays?.length - 1 : currentSlider - 1
-    );
-  }, [arrays?.length]);
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const nextSlider = useCallback(() => {
-    setCurrentSlider((currentSlider) =>
-      currentSlider === arrays?.length - 1 ? 0 : currentSlider + 1
-    );
-  }, [arrays?.length]);
+    setCurrent((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
+  }, [reviews.length]);
 
-  // Auto-slider effect
+  const prevSlider = () => {
+    setCurrent((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  };
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      nextSlider();
-    }, 3000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [nextSlider]);
+    if (isPaused || reviews.length === 0) return;
+    const interval = setInterval(nextSlider, 4000);
+    return () => clearInterval(interval);
+  }, [nextSlider, isPaused, reviews.length]);
 
-  // Set screen size based on window width inside useEffect
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768);
-    };
-
-    // Initialize on component mount
-    handleResize();
-
-    // Add event listener for window resizing
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  if (reviews.length === 0) return null;
 
   return (
-    <div className="relative overflow-hidden bg-black rounded-md">
-      <div className="absolute w-full h-full flex items-center justify-between z-10">
-        {/* arrow left */}
+    <div 
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="relative overflow-hidden bg-black/80 backdrop-blur-lg rounded-2xl border border-white/10 shadow-2xl p-6 md:p-10"
+    >
+      {/* Navigation Buttons */}
+      <div className="absolute top-6 right-6 flex gap-3 z-20">
         <button
           onClick={prevSlider}
-          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 rounded-full w-6 h-6 md:w-8 md:h-8 text-white"
+          className="p-2 rounded-full border border-white/20 text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
         >
-          <svg
-            viewBox="0 0 1024 1024"
-            className="w-4 h-4 md:w-6 md:h-6 icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="black"
-          >
-            <g strokeWidth="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                fill="black"
-                d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-              ></path>
-            </g>
-          </svg>
+          <BsArrowLeft size={18} />
         </button>
-        {/* arrow right */}
         <button
           onClick={nextSlider}
-          className="flex justify-center bg-yellow-500 items-center hover:bg-yellow-600 duration-300 rounded-full w-6 h-6 md:w-8 md:h-8 text-white"
+          className="p-2 rounded-full border border-white/20 text-white hover:bg-yellow-500 hover:text-black transition-all duration-300"
         >
-          <svg
-            viewBox="0 0 1024 1024"
-            className="w-4 h-4 md:w-6 md:h-6 icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="black"
-            transform="rotate(180)"
-          >
-            <g strokeWidth="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                fill="black"
-                d="M685.248 104.704a64 64 0 010 90.496L368.448 512l316.8 316.8a64 64 0 01-90.496 90.496L232.704 557.248a64 64 0 010-90.496l362.048-362.048a64 64 0 0190.496 0z"
-              ></path>
-            </g>
-          </svg>
+          <BsArrowRight size={18} />
         </button>
       </div>
-      {/* slider container */}
-      <div
-        className="ease-linear duration-300 flex"
-        style={{
-          transform: `translateX(-${
-            currentSlider * (isSmallScreen ? 100 : 100)
-          }%)`,
-        }}
-      >
-        {/* sliders */}
-        {arrays?.map((each, idx) => (
-          <div key={idx} className="p-4 min-w-full mt-16 md:mt-0">
-            <div className="h-full p-8 rounded shadow-[0px_4px_12px_rgba(0,0,0,0.1)]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="block w-5 h-5 text-white mb-4"
-                viewBox="0 0 975.036 975.036"
-              >
-                <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-              </svg>
-              <p className="leading-relaxed mb-6 text-white">{each?.review}</p>
-              <a className="inline-flex items-center">
+
+      {/* Review Content with Animation */}
+      <div className="relative min-h-[220px] flex items-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="w-full"
+          >
+            {/* Quote Icon */}
+            <svg
+              className="w-10 h-10 text-yellow-500/30 mb-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V12C14.017 12.5523 13.5693 13 13.017 13H11.017V4H21.017V15C21.017 18.3137 18.3307 21 15.017 21H14.017ZM3.017 21V18C3.017 16.8954 3.91243 16 5.017 16H8.017C8.56928 16 9.017 15.5523 9.017 15V9C9.017 8.44772 8.56928 8 8.017 8H4.017C3.46472 8 3.017 8.44772 3.017 9V12C3.017 12.5523 2.56928 13 2.017 13H0.017V4H10.017V15C10.017 18.3137 7.33071 21 4.017 21H3.017Z" />
+            </svg>
+
+            <p className="text-gray-200 text-lg md:text-xl italic leading-relaxed mb-8">
+              "{reviews[current]?.review}"
+            </p>
+
+            {/* User Info */}
+            <div className="flex items-center gap-4">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-yellow-500">
                 <Image
-                  height={50}
-                  width={50}
-                  className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-                  src={each?.user?.image}
-                  alt="carousel navigate ui"
+                  src={reviews[current]?.user?.image || "/placeholder-user.png"}
+                  fill
+                  className="object-cover"
+                  alt={reviews[current]?.user?.name}
                 />
-                <span className="flex-grow flex flex-col pl-4">
-                  <span className="title-font font-medium text-white">
-                    {each?.user?.name}
-                  </span>
-                  <span className="text-white text-sm">{each?.user?.role}</span>
-                </span>
-              </a>
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-lg">
+                  {reviews[current]?.user?.name}
+                </h4>
+                <p className="text-yellow-500 text-sm font-medium uppercase tracking-widest">
+                  {reviews[current]?.user?.role || "Customer"}
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Progress Dots */}
+      <div className="flex gap-2 mt-8">
+        {reviews.map((_, i) => (
+          <div
+            key={i}
+            className={`h-1 rounded-full transition-all duration-500 ${
+              i === current ? "w-8 bg-yellow-500" : "w-2 bg-white/20"
+            }`}
+          />
         ))}
       </div>
     </div>

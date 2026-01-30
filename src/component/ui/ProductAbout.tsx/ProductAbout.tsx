@@ -6,41 +6,63 @@ import { TProduct } from "@/type/product";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
 
 const ProductAbout = () => {
   const { data, isLoading } = useGetProductsQuery(undefined);
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  const displayProducts = data?.data?.result?.slice(0, 4) || [];
+
   return (
-    <div className=" bg-[#343a40] md:flex justify-center items-center gap-8 px-16 py-24 md:mx-10 space-y-16 md:space-y-0 mt-40 rounded-md">
-      {data?.data?.result?.slice(0, 4)?.map((product: TProduct) => {
-        return (
-          <div
-            key={product?._id}
-            className=" flex flex-wrap justify-center items-center space-y-8 "
-          >
-            <Image
-              src={product?.image}
-              className="  size-32 rounded-full object-cover"
-              height={100}
-              quality={100}
-              width={100}
-              alt=""
-            />
-            <div className=" text-center space-y-2">
-              <p className=" text-md uppercase">{product?.name}</p>
-              <p className="">{product?.description.slice(0, 90)}</p>
-            </div>
-            <Link href={"/"}>
-              <OtherButton className=" w-36 h-8 before:border text-sm">
-                Discover more
-              </OtherButton>
-            </Link>
-          </div>
-        );
-      })}
-    </div>
+    <section className="bg-[#1a1d20] py-24 px-6 md:px-12 lg:px-20 mt-32">
+      <div className="max-w-[1500px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          {displayProducts.map((product: TProduct, index: number) => (
+            <motion.div
+              key={product?._id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center text-center group"
+            >
+              <div className="relative mb-6">
+                <div className="absolute inset-0 bg-yellow-500 rounded-full scale-0 group-hover:scale-110 transition-transform duration-500 opacity-20" />
+                <Image
+                  src={product?.image}
+                  className="size-36 rounded-full object-cover border-4 border-gray-700 group-hover:border-yellow-500 transition-colors duration-500 shadow-2xl"
+                  height={150}
+                  width={150}
+                  quality={100}
+                  alt={product?.name || "Product"}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-white text-lg font-bold uppercase tracking-wider group-hover:text-yellow-500 transition-colors">
+                  {product?.name}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 px-2">
+                  {product?.description}
+                </p>
+              </div>
+ 
+              <div className="mt-8">
+                <Link href={`/products/${product?._id}`}>
+                  <OtherButton className="px-6 py-2 text-xs uppercase tracking-widest border border-white/20 hover:bg-white hover:text-black transition-all duration-300">
+                    Discover more
+                  </OtherButton>
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

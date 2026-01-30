@@ -1,125 +1,94 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import dynamic from "next/dynamic";
 import { useAppSelector } from "@/redux/hook";
 
+const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
+
 const Header = () => {
-  const image = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
   const [isOpen, setIsOpen] = useState(false);
-
-  // Memoized dynamic import
-  const Auth = dynamic(() => import("../Auth/Auth"), { ssr: false });
+  const [mounted, setMounted] = useState(false); 
   const { user } = useAppSelector((store) => store.auth);
-
+  
+  const logoImage = "https://html.rrdevs.net/zummi/assets/imgs/logo/logo.svg";
   const role = user?.role;
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Food Menu", href: "/menu" },
+    { name: "Shop", href: "/shop" },
+    { name: "Chef", href: "/chef" },
+    { name: "Blog", href: "/blog" },
+    { name: "Checkout", href: "/checkout" },
+  ];
 
   return (
-    <nav className="fixed w-full bg-gray-500/75 z-20 py-4 px-4 md:px-20 uppercase">
-      <div className="relative flex justify-between items-center text-white">
-        {/* Logo Section */}
-        <div>
+    <nav className="fixed w-full bg-gray-900/80 backdrop-blur-md z-50 py-4 px-4 md:px-20 uppercase">
+      <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
+        <Link href="/">
           <Image
-            height={150}
-            width={150}
-            src={image.trim()}
-            alt="Restaurant Logo"
+            height={40}
+            width={120}
+            src={logoImage}
+            alt="Logo"
+            priority
           />
-        </div>
+        </Link>
 
-        {/* Navigation Links */}
         <div
-          className={`md:flex md:items-center md:justify-end absolute md:static -left-4 top-[70px] md:top-0 w-full md:w-auto bg-red-500 md:bg-transparent transition-all duration-500 ${
-            isOpen
-              ? "flex flex-col -left-4 h-screen md:h-auto w-screen border"
-              : "-left-[800px] h-screen md:h-0 w-full"
+          className={`absolute md:static bg-black md:bg-transparent left-0 top-[72px] w-full md:w-auto flex flex-col md:flex-row items-center transition-all duration-500 ease-in-out ${
+            isOpen ? "h-screen opacity-100" : "h-0 md:h-auto opacity-0 md:opacity-100 pointer-events-none md:pointer-events-auto overflow-hidden"
           }`}
         >
-          <Link
-            href="/"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            About Us
-          </Link>
-          <Link
-            href="/menu"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Food Menu
-          </Link>
-          <Link
-            href="/shop"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Shop
-          </Link>
-          <Link
-            href="/chef"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Chef
-          </Link>
-          <Link
-            href="/blog"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Blog
-          </Link>
-          <Link
-            href="/checkout"
-            className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
-          >
-            Checkout
-          </Link>
-          {user ? (
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="px-6 py-4 md:py-2 text-[13px] font-bold tracking-widest hover:text-yellow-500 transition-colors"
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          {mounted && user && (
             <Link
               href={`/dashboard/${role}`}
-              className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500"
+              onClick={() => setIsOpen(false)}
+              className="px-6 py-4 md:py-2 text-[13px] font-bold text-yellow-500"
             >
               Dashboard
             </Link>
-          ) : (
-            ""
           )}
-          <div>
-            {user ? (
-              <div className="md:hidden block px-4 py-2 text-[14px] duration-300 hover:text-blue-500">
-                <Auth />
-              </div>
-            ) : (
-              <Link
-                href={`/register`}
-                className="block px-4 py-2 text-[14px] duration-300 hover:text-blue-500 md:hidden"
-              >
-                Register
-              </Link>
-            )}
+
+          {/* Mobile Auth/Register */}
+          <div className="md:hidden mt-4">
+            {mounted && (user ? <Auth /> : (
+              <Link href="/register" className="text-yellow-500 font-bold">Register</Link>
+            ))}
           </div>
         </div>
 
-        {/* Signup Button and Hamburger Icon */}
-        <div className="flex items-center space-x-4">
-          <div className=" hidden md:block">
-            <Auth />
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block">
+            {mounted && <Auth />}
           </div>
           <button
             onClick={toggleMenu}
-            className="md:hidden text-white focus:outline-none"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg"
           >
-            {isOpen ? <AiOutlineClose size={25} /> : <FaBars size={25} />}
+            {isOpen ? <AiOutlineClose size={26} /> : <FaBars size={26} />}
           </button>
         </div>
       </div>

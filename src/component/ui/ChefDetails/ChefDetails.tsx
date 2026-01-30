@@ -1,7 +1,8 @@
 "use client";
 import { TargetCounts } from "@/type/TargetCounts";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const ChefDetails = () => {
   const [counts, setCounts] = useState<TargetCounts>({
@@ -11,7 +12,12 @@ const ChefDetails = () => {
     happyCustomers: 0,
   });
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   useEffect(() => {
+    if (!isInView) return;
+
     const targetCounts: TargetCounts = {
       chefs: 420,
       foodItems: 320,
@@ -19,85 +25,85 @@ const ChefDetails = () => {
       happyCustomers: 220,
     };
 
+    // কাউন্টিং স্পিড কন্ট্রোল করার জন্য লজিক
+    const duration = 2000; // ২ সেকেন্ডের মধ্যে শেষ হবে
+    const frameRate = 1000 / 60; // ৬০ এফপিএস
+    const totalFrames = Math.round(duration / frameRate);
+
+    let frame = 0;
     const interval = setInterval(() => {
-      setCounts((prev: TargetCounts) => {
-        const updatedCounts: TargetCounts = { ...prev };
-        let allReached = true;
+      frame++;
+      const progress = frame / totalFrames;
 
-        Object.keys(targetCounts).forEach((key) => {
-          const typedKey = key as keyof TargetCounts;
-          if (prev[typedKey] < targetCounts[typedKey]) {
-            updatedCounts[typedKey] += 1;
-            allReached = false;
-          }
-        });
-
-        if (allReached) clearInterval(interval);
-        return updatedCounts;
+      setCounts({
+        chefs: Math.round(targetCounts.chefs * progress),
+        foodItems: Math.round(targetCounts.foodItems * progress),
+        experienced: Math.round(targetCounts.experienced * progress),
+        happyCustomers: Math.round(targetCounts.happyCustomers * progress),
       });
-    }, 10);
+
+      if (frame === totalFrames) clearInterval(interval);
+    }, frameRate);
 
     return () => clearInterval(interval);
-  }, []); // No dependencies needed here, the effect runs once
+  }, [isInView]);
+
+  const stats = [
+    { label: "Professional Chefs", value: counts.chefs, icon: "1" },
+    { label: "Items Of Food", value: counts.foodItems, icon: "2" },
+    { label: "Years Experience", value: counts.experienced, icon: "3" },
+    { label: "Happy Customers", value: counts.happyCustomers, icon: "4" },
+  ];
 
   return (
-    <div className="mt-48 relative">
-      <div>
+    <section ref={ref} className="mt-32 relative overflow-hidden group">
+      <div className="relative h-[1000px] md:h-[450px] w-full">
         <Image
-          className="w-full md:h-[500px] h-[1000px] object-cover blur-sm border-2 p-2"
-          src={
-            "https://i.ibb.co.com/FmyYGbP/premium-photo-1678897750441-b7fe348b14a5.jpg"
-          }
-          height={500}
-          width={500}
-          alt=""
-          quality={100}
+          className="object-cover brightness-[0.3] grayscale-[30%]"
+          src="https://i.ibb.co.com/FmyYGbP/premium-photo-1678897750441-b7fe348b14a5.jpg"
+          fill
+          alt="background"
           priority
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20" />
       </div>
-      <div className="md:grid grid-cols-4 absolute md:top-[30%] top-20 w-full space-y-4 md:space-y-0">
-        <div className="flex flex-col items-center space-y-3">
-          <Image
-            src="https://html.rrdevs.net/zummi/assets/imgs/happy-client/happy-client-1.svg"
-            height={100}
-            width={100}
-            alt=""
-          />
-          <p className="text-5xl font-bold">{counts.chefs}</p>
-          <p className="font-semibold text-xl uppercase">Professional Chefs</p>
-        </div>
-        <div className="flex flex-col items-center space-y-3">
-          <Image
-            src="https://html.rrdevs.net/zummi/assets/imgs/happy-client/happy-client-2.svg"
-            height={100}
-            width={100}
-            alt=""
-          />
-          <p className="text-5xl font-bold">{counts.foodItems}</p>
-          <p className="font-semibold text-xl uppercase">Items Of Food</p>
-        </div>
-        <div className="flex flex-col items-center space-y-3">
-          <Image
-            src="https://html.rrdevs.net/zummi/assets/imgs/happy-client/happy-client-2.svg"
-            height={100}
-            width={100}
-            alt=""
-          />
-          <p className="text-5xl font-bold">{counts.experienced}</p>
-          <p className="font-semibold text-xl uppercase">Experienced</p>
-        </div>
-        <div className="flex flex-col items-center space-y-3">
-          <Image
-            src="https://html.rrdevs.net/zummi/assets/imgs/happy-client/happy-client-4.svg"
-            height={100}
-            width={100}
-            alt=""
-          />
-          <p className="text-5xl font-bold">{counts.happyCustomers}</p>
-          <p className="font-semibold text-xl uppercase">Happy Customers</p>
+
+      <div className="absolute inset-0 flex items-center">
+        <div className="max-w-[1500px] mx-auto w-full px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 md:gap-4">
+          {stats.map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: idx * 0.2 }}
+              className="flex flex-col items-center text-center space-y-4"
+            >
+              {/* Icon with Hover Glow */}
+              <div className="relative w-20 h-20 flex justify-center items-center bg-white/10 backdrop-blur-sm rounded-full border border-white/20 group-hover:border-yellow-500 transition-colors duration-500">
+                <Image
+                  src={`https://html.rrdevs.net/zummi/assets/imgs/happy-client/happy-client-${item.icon === "3" ? "2" : item.icon}.svg`}
+                  height={50}
+                  width={50}
+                  alt="icon"
+                  className="brightness-0 invert group-hover:scale-110 transition-transform"
+                />
+              </div>
+
+              {/* Number and Label */}
+              <div className="space-y-1">
+                <h3 className="text-5xl md:text-6xl font-black text-white flex items-baseline justify-center">
+                  {item.value}
+                  <span className="text-yellow-500 text-3xl">+</span>
+                </h3>
+                <p className="text-gray-300 font-medium tracking-widest text-sm uppercase">
+                  {item.label}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
