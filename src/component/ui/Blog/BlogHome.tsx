@@ -13,7 +13,7 @@ const BlogHome = async() => {
 
 
   return (
-    <section className="mt-40 mb-24 px-6 md:px-12 lg:px-24 max-w-[1500px] mx-auto">
+    <section className="mt-40 mb-24 px-6 md:px-0 max-w-[1500px] mx-auto">
 
       <div className="flex flex-col items-center md:items-start space-y-4 mb-16">
         <CommonDesign>Latest Articles</CommonDesign>
