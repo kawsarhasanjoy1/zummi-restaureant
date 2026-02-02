@@ -34,8 +34,8 @@ const Header = () => {
   ];
 
   return (
-    <nav className="fixed w-full bg-gray-900/80 backdrop-blur-md z-50 py-4 px-4 md:px-20 uppercase">
-      <div className="max-w-7xl mx-auto flex justify-between items-center text-white">
+    <nav className="fixed w-full bg-gray-900/80 backdrop-blur-md z-50 py-4 px-4  uppercase">
+      <div className="max-w-[1500px] mx-auto flex justify-between items-center text-white">
         <Link href="/">
           <Image
             height={40}

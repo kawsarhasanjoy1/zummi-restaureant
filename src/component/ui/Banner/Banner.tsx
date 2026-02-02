@@ -23,7 +23,7 @@ const Banner = () => {
         <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
       </div>
 
-      <div className="relative h-full max-w-[1500px] mx-auto px-6 md:px-12 flex flex-col justify-center">
+      <div className="relative h-full max-w-[1500px] mx-auto px-6 md:px-0 flex flex-col justify-center">
         <div className="max-w-4xl space-y-8">
           
           <div className="inline-block animate-fade-in">

@@ -15,9 +15,11 @@ const FoodMenu = () => {
   const categories = ["morning", "lunch", "dinner", "fast food", "beverage"];
 
   const filteredItems = useMemo(() => {
-    return data?.data?.result
-      ?.filter((menu: any) => menu?.category === activeTab)
-      ?.slice(0, 4) || [];
+    return (
+      data?.data?.result
+        ?.filter((menu: any) => menu?.category === activeTab)
+        ?.slice(0, 4) || []
+    );
   }, [data, activeTab]);
 
   if (isLoading) return <LoadingSpinner />;
@@ -32,7 +34,7 @@ const FoodMenu = () => {
         <div className="w-20 h-1 bg-yellow-500 rounded-full" />
       </div>
 
-      <div className="max-w-[1500px] mx-auto md:px-10 lg:px-20">
+      <div className="max-w-[1500px] mx-auto ">
         <div className="flex flex-wrap border-b border-gray-200 dark:border-gray-800 justify-center items-center gap-2 md:gap-6 mb-16 pb-4 sticky top-20 bg-white/5 backdrop-blur-md z-10">
           {categories.map((cat, index) => (
             <React.Fragment key={cat}>
@@ -49,7 +51,7 @@ const FoodMenu = () => {
         </div>
 
         <div className="min-h-[400px]">
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
           >
@@ -67,7 +69,7 @@ const FoodMenu = () => {
                   </motion.div>
                 ))
               ) : (
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="col-span-full text-center text-gray-500 py-20"
@@ -79,7 +81,7 @@ const FoodMenu = () => {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

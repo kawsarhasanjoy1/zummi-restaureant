@@ -1,4 +1,3 @@
-"use client";
 import About from "@/component/ui/About/About";
 import Banner from "@/component/ui/Banner/Banner";
 import ProductAbout from "@/component/ui/ProductAbout.tsx/ProductAbout";

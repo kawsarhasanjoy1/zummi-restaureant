@@ -1,17 +1,16 @@
-"use client";
 import Image from "next/image";
 import { MdOutlineDateRange, MdPersonOutline } from "react-icons/md";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import CommonDesign from "@/component/Common/CommonDesign";
-import { useFetchBlogQuery } from "@/redux/api/blogApi";
 import { formatDate } from "@/utils/FormateDate/FormateDate";
-import { motion } from "framer-motion";
+import { MotionDiv } from "../MotionWrapper/MotionDiv";
+import { useBlog } from "@/hooks/useBlog";
 
-const BlogHome = () => {
-  const { data, isLoading } = useFetchBlogQuery(undefined);
+const BlogHome = async() => {
+  const data = await useBlog();
 
-  if (isLoading) return null; 
+
 
   return (
     <section className="mt-40 mb-24 px-6 md:px-12 lg:px-24 max-w-[1500px] mx-auto">
@@ -25,7 +24,7 @@ const BlogHome = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
         {data?.data?.result?.slice(0, 3)?.map((blog: any, index: number) => (
-          <motion.div
+          <MotionDiv
             key={blog?._id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +71,7 @@ const BlogHome = () => {
                 <FaArrowRightLong className="transition-transform duration-300 group-hover/btn:translate-x-2 text-yellow-600" />
               </Link>
             </div>
-          </motion.div>
+          </MotionDiv>
         ))}
       </div>
     </section>
